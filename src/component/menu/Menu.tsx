@@ -13,7 +13,7 @@ function Menu() {
 
 	return (
 		<>
-			<div className=" fixed top-0 left-0 right-0 bg-transparent md:bg-[#1F0B01] h-[83px] flex items-center justify-between z-50">
+			<div className=" fixed top-0 left-0 right-0 bg-transparent md:bg-bgmenu h-[83px] flex items-center justify-between z-50">
 				<div>
 					<section className="text-[#FFFFFF] text-[32px] flex md:px-6  items-center">
 						<img
@@ -50,7 +50,7 @@ function Menu() {
 							/>
 						</div>
 						{servicesSelected && (
-							<div className="hover:cursor-auto">
+							<div className="hover:cursor-auto ">
 								<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 								<div
 									onMouseOut={() => setServicesSelected(false)}
