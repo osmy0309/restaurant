@@ -9,7 +9,7 @@ interface CardMenuProps {
 function CardMenu({ image, title, description, price, id }: CardMenuProps) {
 	return (
 		<div
-			className={`h-full flex flex-col rounded-[20px] bg-transparent border border-transparent z-10 hover:hover:shadow-left-bottom transition-shadow duration-300  cursor-pointer`}
+			className={`h-full flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu  cursor-pointer`}
 		>
 			<div className="w-[100%] h-full bg-transparent hover:cursor-pointer">
 				<img className="w-[100%] h-full rounded-t-[20px]" src={`${image}`} />

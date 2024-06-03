@@ -1,7 +1,7 @@
 import Menu from "./component/menu/Menu";
 import Banner from "./component/banner/Banner";
 import Dishes from "./component/dishes/Dishes";
-import ServicesSection from "./component/banner/ServicesSection";
+import Home from "./component/banner/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -16,9 +16,11 @@ function App() {
 						<Route path="/dishes" element={<Dishes />} />
 					</Routes>
 				</div>
-				<div className="overflow-auto">
+				<div className="overflow-auto pb-[2rem]">
 					<Routes>
-						<Route path="/" element={<ServicesSection />} />
+						<>
+							<Route path="/" element={<Home />} />
+						</>
 					</Routes>
 				</div>
 			</div>

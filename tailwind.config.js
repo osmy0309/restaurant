@@ -16,6 +16,7 @@ export default {
 				FF80: "rgba(255, 255, 255, 0.8)",
 				FF40: "rgba(255, 255, 255, 0.4)",
 				bgmenu: "rgba(31, 11, 1, 1)",
+				bordermenu: "rgba(31, 11, 1, 0.17)",
 			},
 		},
 	},
