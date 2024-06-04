@@ -2,6 +2,8 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
+import CardServiceMenu from "../cards/CardServiceMenu";
+import CardSpaceMenu from "../cards/CardSpaceMenu";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
@@ -10,6 +12,67 @@ function Menu() {
 	const handleClickServices = () => {
 		setServicesSelected(!servicesSelected);
 	};
+	const handleClickSpaces = () => {
+		setEspaciosSelected(!espaciosSelected);
+	};
+	const cardMenuData = [
+		{
+			image: "/images/banner/Banners.png",
+			name: "Catering",
+			description: "Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes.",
+			id: 1,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Organización de eventos",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 2,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Experiencias gastrinómicas",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 3,
+		},
+	];
+	const cardMenuData2 = [
+		{
+			image: "/images/banner/Banners.png",
+			name: "Catering",
+			description: "Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes.",
+			id: 1,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Organización de eventos",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 2,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Experiencias gastrinómicas",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 3,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Organización de eventos",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 2,
+		},
+		{
+			image: "/images/banner/Banners.png",
+			name: "Experiencias gastrinómicas",
+			description:
+				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
+			id: 3,
+		},
+	];
 
 	return (
 		<>
@@ -42,6 +105,9 @@ function Menu() {
 								setEspaciosSelected(false);
 								setServicesSelected(true);
 							}}
+							onClick={() => {
+								setServicesSelected(false);
+							}}
 						>
 							Servicios
 							<FontAwesomeIcon
@@ -55,11 +121,21 @@ function Menu() {
 						<div className={`hover:cursor-auto  ${servicesSelected ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}>
 							<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 							<div
-								onMouseOut={() => setServicesSelected(false)}
-								className="fixed inset-0 top-[70px] flex items-center !w-[90%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+								//onMouseOut={() => setServicesSelected(false)}
+								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[50%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
-								Sevicios
+								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9">
+									{cardMenuData2.map((data: any, index: any) => (
+										<CardServiceMenu
+											key={index} // Add a unique key for each CardMenu component
+											image={data.image}
+											title={data.name}
+											description={data.description}
+											id={data.id}
+										/>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
@@ -70,24 +146,35 @@ function Menu() {
 								setEspaciosSelected(true);
 								setServicesSelected(false);
 							}}
+							onClick={handleClickSpaces}
 						>
 							Espacios
 							<FontAwesomeIcon
 								icon={faChevronDown}
 								className="size-[0.6rem]"
-								onMouseEnter={() => setServicesSelected(true)}
-								onClick={handleClickServices}
+								onMouseEnter={() => setEspaciosSelected(true)}
+								onClick={handleClickSpaces}
 							/>
 						</div>
 
 						<div className={`hover:cursor-auto  ${espaciosSelected ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}>
 							<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 							<div
-								onMouseOut={() => setEspaciosSelected(false)}
-								className="fixed inset-0 top-[70px] flex items-center !w-[90%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+								//onMouseOut={() => setEspaciosSelected(false)}
+								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
-								Espacios
+								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[20rem] pt-8 pb-8   ">
+									{cardMenuData.map((data: any, index: any) => (
+										<CardSpaceMenu
+											key={index} // Add a unique key for each CardMenu component
+											image={data.image}
+											title={data.name}
+											description={data.description}
+											id={data.id}
+										/>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>

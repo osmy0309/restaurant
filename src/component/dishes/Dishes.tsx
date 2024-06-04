@@ -1,41 +1,19 @@
+import { useDispatch, useSelector } from "react-redux";
 import CardMenu from "../cards/CardMenu";
+import { useEffect } from "react";
+import { AppDispatch, RootState } from "../../app/store";
+import { loadDishesData } from "../../features/dishes/dishesSlice";
 
 function Dishes() {
-	const cardMenuData = [
-		{
-			image: "/images/banner/Banners.png",
-			title: "Arroz con pollo a la chorrera",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-			price: 6,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			title: "Arroz con pollo a la chorrera",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-			price: 6.5,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			title: "Arroz con pollo a la chorrera",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-			price: 6,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			title: "Arroz con pollo a la chorrera",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-			price: 6,
-		},
-		// Add more cardMenuData objects as needed
-	];
+	const dispatch = useDispatch<AppDispatch>();
+	let dishes: any = useSelector((state: RootState) => state.dishes.data);
+	useEffect(() => {
+		dispatch(loadDishesData());
+	}, []);
+	useEffect(() => {
+		console.log("Dishes en el estado :", dishes);
+	}, [dishes]);
+
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center bg-black pt-[2rem] z-10">
@@ -51,12 +29,12 @@ function Dishes() {
 					</div>
 				</div>
 
-				<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[10%] pt-5  gap-9">
-					{cardMenuData.map((data, index) => (
+				<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[10%] pt-5 pb-10  gap-9">
+					{dishes.map((data: any, index: any) => (
 						<CardMenu
 							key={index} // Add a unique key for each CardMenu component
 							image={data.image}
-							title={data.title}
+							title={data.name}
 							description={data.description}
 							id={data.id}
 							price={data.price}

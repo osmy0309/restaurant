@@ -12,27 +12,20 @@ import { loadDishesData } from "../../features/dishes/dishesSlice";
 
 const Home = () => {
 	const dispatch = useDispatch<AppDispatch>();
-	let settings = useSelector(
-		(state: RootState) => state.setting.data
-	  );
-	  let services = useSelector(
-		(state: RootState) => state.services.data
-	  );
-	  let dishes = useSelector(
-		(state: RootState) => state.dishes.data
-	  );
-	  useEffect(()=>{
-		dispatch(loadSettingData())
-		dispatch(loadServiceData())
-		dispatch(loadDishesData())
-	  },[])
-	  useEffect(()=>{
-		console.log("Settings en el estado :",settings);
-		console.log("Services en el estado :",services);
-		console.log("Dishes en el estado :",dishes);
-		
-	  },[settings,services,dishes])
-	
+	let settings = useSelector((state: RootState) => state.setting.data);
+	let services = useSelector((state: RootState) => state.services.data);
+	let dishes = useSelector((state: RootState) => state.dishes.data);
+	useEffect(() => {
+		dispatch(loadSettingData());
+		dispatch(loadServiceData());
+		dispatch(loadDishesData());
+	}, []);
+	useEffect(() => {
+		console.log("Settings en el estado :", settings);
+		console.log("Services en el estado :", services);
+		console.log("Dishes en el estado :", dishes);
+	}, [settings, services, dishes]);
+
 	return (
 		<>
 			<ServicesSection />
