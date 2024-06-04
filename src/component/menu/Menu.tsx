@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link, useLocation } from "react-router-dom";
 import CardServiceMenu from "../cards/CardServiceMenu";
 import CardSpaceMenu from "../cards/CardSpaceMenu";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../app/store";
+import { loadServiceData } from "../../features/services/servicesSlice";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
@@ -15,48 +18,22 @@ function Menu() {
 	const handleClickSpaces = () => {
 		setEspaciosSelected(!espaciosSelected);
 	};
+	const dispatch = useDispatch<AppDispatch>();
+	let services: any = useSelector((state: RootState) => state.services.data);
+	useEffect(() => {
+		dispatch(loadServiceData());
+	}, []);
+
+	useEffect(() => {
+		console.log("SERVICIOS en el estado :", services);
+	}, [services]);
+
 	const cardMenuData = [
 		{
 			image: "/images/banner/Banners.png",
 			name: "Catering",
 			description: "Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes.",
 			id: 1,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Organización de eventos",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 2,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Experiencias gastrinómicas",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 3,
-		},
-	];
-	const cardMenuData2 = [
-		{
-			image: "/images/banner/Banners.png",
-			name: "Catering",
-			description: "Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes.",
-			id: 1,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Organización de eventos",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 2,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Experiencias gastrinómicas",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 3,
 		},
 		{
 			image: "/images/banner/Banners.png",
@@ -126,11 +103,11 @@ function Menu() {
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
 								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9">
-									{cardMenuData2.map((data: any, index: any) => (
+									{services.map((data: any, index: any) => (
 										<CardServiceMenu
 											key={index} // Add a unique key for each CardMenu component
-											image={data.image}
-											title={data.name}
+											image={data.coverImage}
+											title={data.chortName}
 											description={data.description}
 											id={data.id}
 										/>

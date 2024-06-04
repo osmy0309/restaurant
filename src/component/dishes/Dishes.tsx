@@ -10,9 +10,9 @@ function Dishes() {
 	useEffect(() => {
 		dispatch(loadDishesData());
 	}, []);
-	useEffect(() => {
+	/*useEffect(() => {
 		console.log("Dishes en el estado :", dishes);
-	}, [dishes]);
+	}, [dishes]);*/
 
 	return (
 		<>

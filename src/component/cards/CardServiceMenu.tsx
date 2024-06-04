@@ -13,7 +13,10 @@ function CardServiceMenu({ image, title, description, id }: CardMenuProps) {
 			<div className={`w-[25%] h-[100px] bg-[url('${image}')] bg-cover bg-center !rounded-full flex justify-center items-center my-[1rem]`}></div>
 			<div className=" w-[75%]  flex flex-col gap-3 font-Roboto ] rounded-b-[20px] pl-3">
 				<div className="text-[24px] font-normal font-Sail_Regular text-center text-[#1F0B01]">{title}</div>
-				<div className=" text-[13px] font-Roboto text-[#888888] text-justify pb-4"> {description}</div>
+				<div
+					className=" text-[13px] font-Roboto text-[#888888] text-justify flex justify-center pb-4"
+					dangerouslySetInnerHTML={{ __html: description }}
+				/>
 			</div>
 		</div>
 	);
