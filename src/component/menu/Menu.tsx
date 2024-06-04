@@ -99,7 +99,7 @@ function Menu() {
 							<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 							<div
 								//onMouseOut={() => setServicesSelected(false)}
-								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[50%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] xl:!h-[86%] 2xl:!h-[55%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
 								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9">
@@ -138,10 +138,10 @@ function Menu() {
 							<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 							<div
 								//onMouseOut={() => setEspaciosSelected(false)}
-								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+								className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] xl:!h-[86%] 2xl:!h-[55%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
-								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[20rem] pt-8 pb-8   ">
+								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[20rem] pt-8 pb-8  gap-5 ">
 									{cardMenuData.map((data: any, index: any) => (
 										<CardSpaceMenu
 											key={index} // Add a unique key for each CardMenu component
