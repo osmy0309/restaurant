@@ -84,7 +84,7 @@ function Menu() {
 											key={index} // Add a unique key for each CardMenu component
 											image={data.coverImage}
 											title={data.chortName}
-											description={data.description}
+											description={data.largeName}
 											id={data.id}
 										/>
 									))}
@@ -123,7 +123,7 @@ function Menu() {
 											key={`menu-space-${data.id}`} // Add a unique key for each CardMenu component
 											image={data.coverImage}
 											title={data.chortName}
-											description={data.description}
+											description={data.largeName}
 											id={data.id}
 											category={data.category}
 										/>
