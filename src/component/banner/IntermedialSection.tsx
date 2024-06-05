@@ -2,11 +2,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 function IntermedialSection() {
 	let setting = useSelector((state: RootState) => state.setting.data);
+	console.log("SETTINGS", setting);
 
 	return (
 		<div className="pb-[2rem] pt-[5rem]">
 			<div className=" w-full !h-[800px] ">
-				{setting.homeImages && <img className="w-full h-full rounded-t-[20px]" src={setting.homeImages[1]} alt={"Banner"} />}
+				{setting.homeImages && <img className="w-full h-full rounded-t-[20px]" src={setting.homeImages.intermedial} alt={"Banner"} />}
 			</div>
 		</div>
 	);
