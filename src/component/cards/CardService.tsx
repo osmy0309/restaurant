@@ -23,7 +23,7 @@ function CardService({ image, title, description, index, length }: CardMenuProps
 			</div>
 			<div className="flex flex-col p-[36px] bg-white gap-3 font-Roboto ] rounded-b-[20px]">
 				<div className="text-[36px] font-normal font-Sail_Regular text-center text-[#1F0B01]">{title}</div>
-				<div className=" text-[16px] font-Roboto text-[#888888] text-center"> {description}</div>
+				<div className=" text-[16px] font-Roboto text-[#888888] text-center" dangerouslySetInnerHTML={{ __html: description }}/>
 			</div>
 		</div>
 	);

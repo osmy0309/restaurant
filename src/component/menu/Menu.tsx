@@ -78,14 +78,14 @@ function Menu() {
 								className="max-h-[40rem] overflow-auto fixed  inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] xl:!h-auto 2xl:!h-[40rem] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
-								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9 ">
+								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9">
 									{services.length > 0 &&
 										services.map((data: any, index: any) => (
 											<CardServiceMenu
 												key={index} // Add a unique key for each CardMenu component
 												image={data.coverImage}
 												title={data.chortName}
-												description={data.description}
+												description={data.largeName}
 												id={data.id}
 											/>
 										))}

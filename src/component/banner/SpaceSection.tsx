@@ -17,7 +17,7 @@ function SpaceSection() {
 							key={`home-space-${data.id}`} // Add a unique key for each CardMenu component
 							image={data.coverImage}
 							title={data.chortName}
-							description={data.description}
+							description={data.largeName}
 							id={data.id}
 							category={data.category}
 						/>
