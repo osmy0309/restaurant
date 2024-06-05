@@ -18,7 +18,7 @@ function CardMenu({ image, title, description, price }: CardMenuProps) {
 				<div className="text-[18px] font-bold h-[4rem]">{title}</div>
 				<div className="h-[10rem] text-[14px]" dangerouslySetInnerHTML={{ __html: description }} />
 				<div className="text-[16px] text-[#D16733] font-bold">{price} USD</div>
-				<div className="text-[15px] rounded-[10px] border-[1px] border-[#BFA598] text-[#D16733] p-3 w-[50%] font-bold flex items-center justify-center gap-2 hover:bg-[#ffebe1] transition-colors duration-300 cursor-pointer">
+				<div className="text-[15px] rounded-[10px] border-[1px] border-[#BFA598] text-[#D16733] p-3 w-[65%] font-bold flex items-center justify-center gap-2 hover:bg-[#ffebe1] transition-colors duration-300 cursor-pointer">
 					<img className="h-[25px]" src="/images/card/cart.png" alt="Add to cart" /> Añadir al carrito
 				</div>
 			</div>

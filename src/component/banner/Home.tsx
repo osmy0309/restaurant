@@ -21,7 +21,7 @@ const Home = () => {
 		dispatch(loadSpacesData());
 		dispatch(loadChefSuggestionsData());
 	}, []);
-	
+
 	return (
 		<>
 			<ServicesSection />
