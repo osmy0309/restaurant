@@ -1,8 +1,4 @@
-import IntermedialSection from "./IntermedialSection";
-import BookingSection from "./BookingSection";
-import ServicesSection from "./ServicesSection";
-import SugerenciasSection from "./SugerenciasSection";
-import SpaceSection from "./SpaceSection";
+import BookingSection from "../banner/BookingSection";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../app/store";
 import { useEffect } from "react";
@@ -10,8 +6,9 @@ import { loadSettingData } from "../../features/settings/settingsSlice";
 import { loadServiceData } from "../../features/services/servicesSlice";
 import { loadChefSuggestionsData, loadDishesData } from "../../features/dishes/dishesSlice";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
-import ContactSection from "./ContactSection";
-import Banner from "./Banner";
+import ContactSection from "../banner/ContactSection";
+import Banner from "../banner/BannerOrganizationEvent";
+import OrganiceEventPage from "./servicespages/OrganiceEventPage";
 
 const Home = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -26,10 +23,7 @@ const Home = () => {
 	return (
 		<>
 			<Banner />
-			<ServicesSection />
-			<IntermedialSection />
-			<SugerenciasSection />
-			<SpaceSection />
+			<OrganiceEventPage />
 			<BookingSection />
 			<ContactSection />
 		</>
