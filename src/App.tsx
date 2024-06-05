@@ -1,5 +1,6 @@
 import Dishes from "./pages/dishes";
 import Home from "./pages/home";
+import OrganiceEvent from "./component/pages/OrganiceEvent";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 
@@ -23,6 +24,13 @@ function App() {
 					<Route path="/dishes" element={<Dishes />} />
 				</Routes>
 			</div>
+			<div className="overflow-auto pb-[2rem]">
+					<Routes>
+						<>
+							<Route path="/organizationevent" element={<OrganiceEvent />} />
+						</>
+					</Routes>
+				</div>
 
 		</BrowserRouter>
 	);

@@ -26,6 +26,10 @@ function Menu() {
 		dispatch(loadServiceData());
 		dispatch(loadSpacesData());
 	}, []);
+	/*useEffect(() => {
+		setEspaciosSelected(false);
+		setServicesSelected(false);
+	}, location.state);*/
 
 	return (
 		<>
@@ -53,7 +57,9 @@ function Menu() {
 					</Link>
 					<div className=" flex relative hover:cursor-pointer ">
 						<div
-							className="  flex items-center gap-2  hover:text-[#E38A5D]"
+							className={`flex items-center gap-2 hover:text-[#E38A5D] ${
+								location.pathname === "/organizationevent" ? "text-[#E38A5D]" : "text-[#FFFFFF]"
+							}`}
 							onMouseEnter={() => {
 								setEspaciosSelected(false);
 								setServicesSelected(true);

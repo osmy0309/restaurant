@@ -19,7 +19,7 @@ function CardSpaceMenu({ image, title, description, category }: CardMenuProps) {
 				<div className="text-[24px] font-normal font-Sail_Regular text-center text-[#1F0B01]">{title}</div>
 				<div
 					className=" h-[100%] max-h-[200px] text-[13px] font-Roboto text-[#888888] text-justify pb-4 overflow-auto !p-2"
-					style={{ scrollbarWidth: "thin", scrollbarColor: "#888888 #f4f4f4" }}
+					style={{ scrollbarWidth: "none", scrollbarColor: "#888888 #f4f4f4" }}
 					dangerouslySetInnerHTML={{ __html: description }}
 				/>
 			</div>
