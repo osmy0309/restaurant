@@ -7,7 +7,7 @@ import { AppDispatch, RootState } from "../../app/store";
 
 function SugerenciasSection() {
 	const dispatch = useDispatch<AppDispatch>();
-	let dishes: any = useSelector((state: RootState) => state.dishes.data);
+	let dishes: any = useSelector((state: RootState) => state.dishes.chefSuggestions);
 	useEffect(() => {
 		dispatch(loadDishesData());
 	}, []);

@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 const HandleLoginHelper =(token:string|null)=>{
-  return true;
+  return token ? true : false;
 }
 const AdminAuth = () => {
   let isValidLogin = false;

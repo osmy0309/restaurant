@@ -5,7 +5,7 @@ interface CardMenuProps {
 	id: number;
 }
 
-function CardServiceMenu({ image, title, description, id }: CardMenuProps) {
+function CardServiceMenu({ image, title, description }: CardMenuProps) {
 	return (
 		<div
 			className={`w-full h-auto p-5 flex bg-transparent z-10 items-center bg-white  hover:shadow-left-bottom transition-shadow duration-300 rounded-[20px] cursor-pointer `}

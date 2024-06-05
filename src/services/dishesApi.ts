@@ -14,10 +14,10 @@ export const getAllDishesApi = async (params:paramsGetAll) => {
    }
   };
 
-  export const getAllChefSuggestionsApi = async (params={}) => {  
+  export const getAllChefSuggestionsApi = async () => {  
     try {
       const response = await Axios.post(
-        `plato/listar-sugerencia-chef`,params
+        `plato/listar-sugerencia-chef`
       );
       return changeNamePropertyDishes(response.data.data)
     } catch (error) {

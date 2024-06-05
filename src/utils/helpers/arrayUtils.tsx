@@ -1,6 +1,7 @@
 import { DishApiDTO, DishDTO } from "../../shared/dtos/dishesDTO";
 import { ServiceApiDTO, ServiceDTO } from "../../shared/dtos/servicesDTO";
-import { dataFollowUsApi, dataListgApi } from "../../shared/dtos/settingsDTO";
+import { SocialNetworkData, dataListgApi } from "../../shared/dtos/settingsDTO";
+import { SpaceApiDTO, SpaceDTO } from "../../shared/dtos/spacesDTO";
 
 const changeNamePropertyBooking = (data: dataListgApi[]) => {
   return data.map(d => {
@@ -11,18 +12,27 @@ const changeNamePropertyBooking = (data: dataListgApi[]) => {
   })
 };
 
-const extractPropertyFollow = (data: dataFollowUsApi[]) => {
-  return data.map(d => {
+const changeNameNetworkList = (data:dataListgApi[]):SocialNetworkData[] =>{
+  return data.map(r => {
     return {
-      name: d.nombreCorto,
-      networks: d.redesSociales.map(r => {
+      name: r.nombre,
+      value: r.enlace
+    }
+  })
+}
+
+const extractPropertyFollow = (data: SpaceDTO[] | undefined) => {
+  return data ? data.map(d => {
+    return {
+      name: d.chortName,
+      networks: d.networks.map(r => {
         return {
-          name: r.nombre,
-          value: r.enlace
+          name: r.name,
+          value: r.value
         }
       })
     }
-  })
+  }):undefined
 };
 
 const changeNamePropertyServices = (data: ServiceApiDTO[]):ServiceDTO[] => {
@@ -63,9 +73,29 @@ const changeNamePropertyDishes = (data: DishApiDTO[]):DishDTO[] => {
   }))
 };
 
+const changeNamePropertySpaces = (data: SpaceApiDTO[]):SpaceDTO[] => {
+  return data.map(d => ({
+    id:d.id,
+    chortName:d.nombreCorto,
+    largeName:d.nombreLargo,
+    order:d.orden,
+    active:d.activo,
+    public:d.publico,
+    pax:d.cantidadMesa,
+    description:d.descripcion,
+    coverImage: d.imagenPortada,
+    detailedImage: d.imagenDetallada,
+    networks:changeNameNetworkList(d.redesSociales),
+    category:d.categoria,
+  }))
+};
+
+
+
 export { 
   changeNamePropertyBooking,
    extractPropertyFollow, 
-   changeNamePropertyServices ,
-   changeNamePropertyDishes
+   changeNamePropertyServices,
+   changeNamePropertyDishes,
+   changeNamePropertySpaces
   };

@@ -3,6 +3,7 @@ import Banner from "./component/banner/Banner";
 import Dishes from "./component/dishes/Dishes";
 import Home from "./component/banner/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Footer from "./component/footer/Footer";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 						</>
 					</Routes>
 				</div>
+				<Footer/>
 			</div>
 		</BrowserRouter>
 	);

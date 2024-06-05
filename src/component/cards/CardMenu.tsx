@@ -1,14 +1,12 @@
-import React from "react";
-
 interface CardMenuProps {
 	image: string;
 	title: string;
 	description: string;
-	price: number;
+	price: number | string;
 	id: number;
 }
 
-function CardMenu({ image, title, description, price, id }: CardMenuProps) {
+function CardMenu({ image, title, description, price }: CardMenuProps) {
 	return (
 		<div
 			className={`h-auto flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu  cursor-pointer`}

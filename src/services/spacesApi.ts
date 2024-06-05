@@ -1,7 +1,16 @@
+import { changeNamePropertySpaces } from "../utils/helpers/arrayUtils";
 import Axios from "./Axios";
 
-export const getAllSpacesApi = async ({params={}}) => {  
-    return await Axios.post(
-      `/espacio/listar`,params
-    );
-  };
+  interface paramsGetAll {
+    public?:boolean;
+  }
+  export const getAllSpacesApi = async (params:paramsGetAll) => {
+      try {
+        const response =  await Axios.post(
+          `/espacio/listar`,params
+        );    
+        return changeNamePropertySpaces(response?.data?.data);
+      } catch (error) {
+        console.error(error)
+      }
+    };

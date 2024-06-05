@@ -1,30 +1,9 @@
+import { useSelector } from "react-redux";
 import CardSpace from "../cards/CardSpace";
+import { RootState } from "../../app/store";
 
 function SpaceSection() {
-	const cardMenuData = [
-		{
-			image: "/images/banner/carbon.png",
-			title: "Al Carbón",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-		},
-		{
-			image: "/images/banner/ivanchef.png",
-			title: "IvanChefjusto",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-		},
-		{
-			image: "/images/banner/dulceria.png",
-			title: "Dulcería",
-			description:
-				"500g. Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 1,
-		},
-		// Add more cardMenuData objects as needed
-	];
+	let spaces = useSelector((state: RootState) => state.spaces.data);
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center bg-white pt-[5rem] z-10">
@@ -33,13 +12,14 @@ function SpaceSection() {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[10%] pt-5  gap-[1rem] pb-[1rem]">
-					{cardMenuData.map((data, index) => (
+					{spaces.length > 0 && spaces.map((data) => (
 						<CardSpace
-							key={index} // Add a unique key for each CardMenu component
-							image={data.image}
-							title={data.title}
+							key={`home-space-${data.id}`} // Add a unique key for each CardMenu component
+							image={data.coverImage}
+							title={data.chortName}
 							description={data.description}
 							id={data.id}
+							category={data.category}
 						/>
 					))}
 				</div>

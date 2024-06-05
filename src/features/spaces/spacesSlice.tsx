@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { ServiceDTO } from "../../shared/dtos/servicesDTO";
-import { getAllServicesApi } from "../../services/sevicesApi";
+import { SpaceDTO } from "../../shared/dtos/spacesDTO";
+import { getAllSpacesApi } from "../../services/spacesApi";
 
-export interface ServiceState {
-  data: ServiceDTO[] | [];
+export interface SpacesState {
+  data: SpaceDTO[] | [];
   loading: boolean;
 }
 
-const initialState: ServiceState = {
+const initialState: SpacesState = {
   data: [],
   loading: false,
 };
 
-export const serviceSlice = createSlice({
-  name: "services",
+export const spacesSlice = createSlice({
+  name: "spaces",
   initialState,
   reducers: {
     setData: (state, action) => {
@@ -32,16 +32,15 @@ export const {
   setData,
   setLoading,
   reset,
-} = serviceSlice.actions;
-export const selectServices = (state: any) => state.services.data;
+} = spacesSlice.actions;
+export const selectSpaces = (state: any) => state.spaces.data;
 
-export const loadServiceData =
+export const loadSpacesData =
   () =>async (dispatch: any) => {
-    
     dispatch(
       setLoading(true)
     );
-    const response = await getAllServicesApi({});
+    const response = await getAllSpacesApi({});
     response && dispatch(
       setData(response)
     );
@@ -51,4 +50,4 @@ export const loadServiceData =
   };
 
 
-export default serviceSlice.reducer;
+export default spacesSlice.reducer;

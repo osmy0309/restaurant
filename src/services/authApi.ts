@@ -4,7 +4,6 @@ import LoginDTO from "../shared/dtos/loginDTO";
 
 export const adminLogin = async (credentials: LoginDTO) => {
   const url = import.meta.env.VITE_REACT_APP_API_URL;  
-  console.log("Credenciales :",credentials);
   
   const result = await axios
     .post(`${url}/api/login_check`, credentials)

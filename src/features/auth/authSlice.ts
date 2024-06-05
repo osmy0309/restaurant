@@ -7,17 +7,10 @@ const initialState: ModelState<any> = {
   value: {} as any,
   status: "idle",
 };
-const adminUser = {
-  "email":" admin@ivanchefsjusto.com",
-  "password":"Admin123"
- }
- 
-
 export const authAsync = createAsyncThunk(
   "auth/admin/",
   async (credentials: LoginDTO) => {
     const response = await adminLogin(credentials);
-    const { token } = response;
     const validLogin = true//HandleLoginHelper(token);
 
     if (validLogin) {
@@ -38,14 +31,14 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(authAsync.pending, (state, action) => {
+      .addCase(authAsync.pending, (state) => {
         state.status = "loading";
       })
       .addCase(authAsync.fulfilled, (state, action) => {
         state.status = "succeeded";
         state.value = action.payload;
       })
-      .addCase(authAsync.rejected, (state, action) => {
+      .addCase(authAsync.rejected, (state) => {
         state.status = "failed";
       });
   },

@@ -36,14 +36,11 @@ export const {
 export const selectSettings = (state: any) => state.setting.data;
 
 export const loadSettingData =
-  () =>async (dispatch: any) => {
-    console.log("Buscar datos ...");
-    
+  () =>async (dispatch: any) => {    
     dispatch(
       setLoading(true)
     );
     const response = await promiseExecution();
-    console.log("Respuesta en el slice :",response);    
     dispatch(
       setData(response)
     );

@@ -1,14 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getAllDishesApi } from "../../services/dishesApi";
+import { getAllChefSuggestionsApi, getAllDishesApi } from "../../services/dishesApi";
 import { DishDTO } from "../../shared/dtos/dishesDTO";
 
 export interface DishesState {
-  data: DishDTO | [];
+  data: DishDTO[] | [];
+  chefSuggestions:DishDTO[] | [];
   loading: boolean;
 }
 
 const initialState: DishesState = {
   data: [],
+  chefSuggestions: [],
   loading: false,
 };
 
@@ -18,6 +20,9 @@ export const dishesSlice = createSlice({
   reducers: {
     setData: (state, action) => {
       state.data = action.payload;
+    },
+    setChefSuggestions: (state, action) => {
+      state.chefSuggestions = action.payload;
     },
     reset: (state) => {
       state.data = [];
@@ -32,19 +37,18 @@ export const {
   setData,
   setLoading,
   reset,
+  setChefSuggestions,
 } = dishesSlice.actions;
-export const selectDishes = (state: any) => state.Service.data;
+export const selectDishes = (state: any) => state.dishes.data;
 
 export const loadDishesData =
-  () =>async (dispatch: any) => {
-    console.log("Buscar datos Dishes ...");
+  (spaceId?:number) =>async (dispatch: any) => {
     
     dispatch(
       setLoading(true)
     );
-    const response = await getAllDishesApi({});
-    console.log("Respuesta en el slice Dishes :",response);    
-    dispatch(
+    const response = await getAllDishesApi({id_espacio:spaceId}); 
+    response && dispatch(
       setData(response)
     );
     dispatch(
@@ -52,5 +56,21 @@ export const loadDishesData =
     );
   };
 
+  export const loadChefSuggestionsData =
+  () =>async (dispatch: any) => {
+    
+    dispatch(
+      setLoading(true)
+    );
+    const response = await getAllChefSuggestionsApi(); 
+    response && dispatch(
+      setChefSuggestions(response)
+    );
+    dispatch(
+      setLoading(false)
+    );
+  };
+
+  
 
 export default dishesSlice.reducer;

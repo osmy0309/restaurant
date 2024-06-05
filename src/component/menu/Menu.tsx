@@ -7,6 +7,7 @@ import CardSpaceMenu from "../cards/CardSpaceMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { loadServiceData } from "../../features/services/servicesSlice";
+import { loadSpacesData } from "../../features/spaces/spacesSlice";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
@@ -19,37 +20,12 @@ function Menu() {
 		setEspaciosSelected(!espaciosSelected);
 	};
 	const dispatch = useDispatch<AppDispatch>();
-	let services: any = useSelector((state: RootState) => state.services.data);
+	let services = useSelector((state: RootState) => state.services.data);
+	let spaces = useSelector((state: RootState) => state.spaces.data);
 	useEffect(() => {
 		dispatch(loadServiceData());
+		dispatch(loadSpacesData());
 	}, []);
-
-	useEffect(() => {
-		console.log("SERVICIOS en el estado :", services);
-	}, [services]);
-
-	const cardMenuData = [
-		{
-			image: "/images/banner/Banners.png",
-			name: "Catering",
-			description: "Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes.",
-			id: 1,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Organización de eventos",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 2,
-		},
-		{
-			image: "/images/banner/Banners.png",
-			name: "Experiencias gastrinómicas",
-			description:
-				"Se elabora un fricasé de pollo con el que se adoba el arroz y se le agregan otros ingredientes. Se sirve con plátanos maduros fritos, huevo hervido, guisantes, maíz dulce, etc",
-			id: 3,
-		},
-	];
 
 	return (
 		<>
@@ -103,7 +79,7 @@ function Menu() {
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
 								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[8rem]  gap-9">
-									{services.map((data: any, index: any) => (
+									{services.length > 0 && services.map((data: any, index: any) => (
 										<CardServiceMenu
 											key={index} // Add a unique key for each CardMenu component
 											image={data.coverImage}
@@ -142,13 +118,14 @@ function Menu() {
 								style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 							>
 								<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[20rem] pt-8 pb-8  gap-5 ">
-									{cardMenuData.map((data: any, index: any) => (
+									{spaces.length > 0 && spaces.map((data) => (
 										<CardSpaceMenu
-											key={index} // Add a unique key for each CardMenu component
-											image={data.image}
-											title={data.name}
+											key={`menu-space-${data.id}`} // Add a unique key for each CardMenu component
+											image={data.coverImage}
+											title={data.chortName}
 											description={data.description}
 											id={data.id}
+											category={data.category}
 										/>
 									))}
 								</div>
@@ -182,7 +159,7 @@ function Menu() {
 					<img src="/images/menu/solar_user-broken.png" className="w-[2.5rem] h-[2.5rem] " />
 
 					<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
-						<p className=" font-bold">Inicial</p>
+						<p className=" font-bold">Iniciar</p>
 					</div>
 					<div className="hover:cursor-pointer text-FF80 text-[16px] border border-FF40 rounded px-3 py-2 hidden md:inline-block">
 						<p className=" font-bold">Registrarse</p>
