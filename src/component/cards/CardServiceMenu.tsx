@@ -1,5 +1,3 @@
-import React from "react";
-
 interface CardMenuProps {
 	image: string;
 	title: string;

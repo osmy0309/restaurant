@@ -43,7 +43,11 @@ let promiseExecution = async () => {
   const booking = changeNamePropertyBooking(promise[2].data.data) ;
   const {telefonoCelular,correo,telefono} = promise[3].data.data[0];
   const follow = extractPropertyFollow(promise[4]);
-  data.homeImages = [imagen,imagen2,imagen3,imagen4];
+  data.homeImages = {};
+  data.homeImages.banner = imagen;
+  data.homeImages.intermedial=imagen2;
+  data.homeImages.booking=imagen3;
+  data.homeImages.detail=imagen4;
   data.footer = {};
   data.footer.aboutUs = {
     name:nombre,

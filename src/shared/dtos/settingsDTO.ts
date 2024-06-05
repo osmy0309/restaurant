@@ -25,8 +25,15 @@ interface FooterData {
   },
   followUs?:FollowUsData[],
 }
+
+export interface HomeImagesData {
+  banner?:string;
+  intermedial?:string;
+  booking?:string;
+  detail?:string;
+}
 export interface SettingsDTO {
-  homeImages?: string[];
+  homeImages?: HomeImagesData;
   footer?:FooterData;
 }
 
