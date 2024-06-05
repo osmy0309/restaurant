@@ -16,7 +16,7 @@ function ContactSection() {
 				</div>
 
 				<div className="w-[40%]">
-					<form onSubmit={onSubmit} className="w-[100%] flex flex-col gap-[3rem] pb-[2rem]">
+					<form onSubmit={onSubmit} className="w-[100%] flex flex-col gap-[3rem] pb-[2rem] items-center">
 						<TextField name="name" placeholder="Nombre/Alias" label="Nombre/Alias" type="text" value={name} onChange={(value) => setName(value)} />
 						<TextField
 							name="email"
@@ -35,6 +35,14 @@ function ContactSection() {
 							cols={50}
 							rows={50}
 						/>
+
+						<button
+							type="submit"
+							className=" w-[20%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300"
+						>
+							{" "}
+							<p className="text-white text-[16px] font-bold font-Roboto">Enviar</p>
+						</button>
 					</form>
 				</div>
 			</div>
