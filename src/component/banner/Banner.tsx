@@ -8,7 +8,7 @@ function Banner() {
 	return (
 		<>
 			<div className=" w-full !h-[800px]">
-				{setting.homeImages && <img className="w-full h-full rounded-t-[20px]" src={setting.homeImages[0]} alt={"Banner"} />}
+				{setting?.homeImages?.banner && <img className="w-full h-full rounded-t-[20px]" src={setting?.homeImages?.banner} alt={"Banner"} />}
 			</div>
 		</>
 	);
