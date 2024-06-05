@@ -3,6 +3,8 @@ import { RootState } from "../../app/store";
 
 function Banner() {
 	let setting = useSelector((state: RootState) => state.setting.data);
+	console.log("BANNER", setting);
+
 	return (
 		<>
 			<div className=" w-full !h-[800px]">
