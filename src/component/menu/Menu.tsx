@@ -19,6 +19,10 @@ function Menu() {
 	const handleClickSpaces = () => {
 		setEspaciosSelected(!espaciosSelected);
 	};
+	const handleCloseMenuSelect = () => {
+		setEspaciosSelected(false);
+		setServicesSelected(false);
+	};
 	const dispatch = useDispatch<AppDispatch>();
 	let services = useSelector((state: RootState) => state.services.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
@@ -26,10 +30,6 @@ function Menu() {
 		dispatch(loadServiceData());
 		dispatch(loadSpacesData());
 	}, []);
-	/*useEffect(() => {
-		setEspaciosSelected(false);
-		setServicesSelected(false);
-	}, location.state);*/
 
 	return (
 		<>
@@ -93,6 +93,7 @@ function Menu() {
 												title={data.chortName}
 												description={data.largeName}
 												id={data.id}
+												handleCloseMenuSelect={handleCloseMenuSelect}
 											/>
 										))}
 								</div>

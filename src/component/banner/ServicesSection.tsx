@@ -10,17 +10,18 @@ function ServicesSection() {
 				<div className="text-[64px] font-Sail_Regular pb-[3rem]">Nuestros Servicios</div>
 				<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-items-center mx-auto px-[15%] pt-5 gap-9">
 					{" "}
-					{services.length > 0 && services.map((data,index) => (
-						<CardService
-							key={`home-service-${data.id}`} // Add a unique key for each CardMenu component
-							image={data.coverImage}
-							title={data.chortName}
-							description={data.largeName}
-							id={data.id}
-							index={index + 1}
-							length={services.length}
-						/>
-					))}
+					{services.length > 0 &&
+						services.map((data, index) => (
+							<CardService
+								key={`home-service-${data.id}`} // Add a unique key for each CardMenu component
+								image={data.coverImage}
+								title={data.chortName}
+								description={data.largeName}
+								id={data.id}
+								index={index + 1}
+								length={services.length}
+							/>
+						))}
 				</div>
 			</div>
 		</>
