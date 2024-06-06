@@ -166,13 +166,16 @@ function Menu() {
 				<div className=" text-[#FFFFFF] flex gap-6 items-center mr-5 right-0">
 					<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem] hidden md:inline-block" />
 					<img src="/images/menu/solar_user-broken.png" className="w-[2.5rem] h-[2.5rem] " />
-
-					<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
-						<p className=" font-bold">Iniciar</p>
-					</div>
-					<div className="hover:cursor-pointer text-FF80 text-[16px] border border-FF40 rounded px-3 py-2 hidden md:inline-block">
-						<p className=" font-bold">Registrarse</p>
-					</div>
+					<Link to="/register/login">
+						<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
+							<p className=" font-bold">Iniciar</p>
+						</div>
+					</Link>
+					<Link to="/register/register">
+						<div className="hover:cursor-pointer text-FF80 text-[16px] border border-FF40 rounded px-3 py-2 hidden md:inline-block">
+							<p className=" font-bold">Registrarse</p>
+						</div>
+					</Link>
 					<div className="hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
 						<p className=" font-bold">Reserva</p>
 					</div>

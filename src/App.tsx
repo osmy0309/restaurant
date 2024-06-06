@@ -29,12 +29,12 @@ function App() {
 			</div>
 			<div className="overflow-auto">
 				<Routes>
-					<Route path="/login" element={<Login/>} />
+					<Route path="/login" element={<Login />} />
 				</Routes>
 			</div>
 			<div className="overflow-auto">
 				<Routes>
-					<Route path="/register" element={<Login init={false}/>} />
+					<Route path="/register/:type" element={<Login init={false} />} />
 				</Routes>
 			</div>
 			<div className="overflow-auto">
@@ -43,19 +43,19 @@ function App() {
 				</Routes>
 			</div>
 			<div className="overflow-auto">
-					<Routes>
-						<>
-							<Route path="/organizationevent" element={<OrganiceEvent />} />
-						</>
-					</Routes>
-				</div>
-				<div className="overflow-auto">
-					<Routes>
-						<>
-							<Route path="/services/:id" element={<ServicesPage />} />
-						</>
-					</Routes>
-				</div>
+				<Routes>
+					<>
+						<Route path="/organizationevent" element={<OrganiceEvent />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/services/:id" element={<ServicesPage />} />
+					</>
+				</Routes>
+			</div>
 		</BrowserRouter>
 	);
 }

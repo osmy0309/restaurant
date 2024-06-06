@@ -13,27 +13,24 @@ import { ServiceDTO } from "../../shared/dtos/servicesDTO";
 const ServicesPage = () => {
 	const { id } = useParams();
 	const dispatch = useDispatch<AppDispatch>();
-	const [service, setService] = useState<ServiceDTO | undefined>(undefined)
+	const [service, setService] = useState<ServiceDTO | undefined>(undefined);
 	let services = useSelector((state: RootState) => state.services.data);
 	useEffect(() => {
 		dispatch(loadServiceData());
 	}, []);
-	useEffect(()=>{
-		console.log("Id : ", id);
-		services.length > 0 && id && setService(services.find(s=>s.id==parseInt(id)));
-	},[id,services])
+	useEffect(() => {
+		services.length > 0 && id && setService(services.find((s) => s.id == parseInt(id)));
+	}, [id, services]);
 
 	return (
 		<>
 			<ContainerLayout banner={false} key={`page-service-details-${id}`}>
-				{
-					service && (
-						<>
-							<BannerServices image={service.detailedImage} title={service.chortName} description={service.largeName}/>
-							<ServicesSections list={service.sections}/>
-						</>
-					)
-				}
+				{service && (
+					<>
+						<BannerServices image={service.detailedImage} title={service.chortName} description={service.largeName} />
+						<ServicesSections list={service.sections} />
+					</>
+				)}
 				<BookingSection />
 				<ContactSection />
 			</ContainerLayout>
