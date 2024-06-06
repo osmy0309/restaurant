@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import TextField from "../form/TextField";
 
 function FormLogin({login=true}) {
-    const onSubmit = async (ev: any) => {
+    const onSubmit = async (ev:FormEvent<HTMLFormElement>) => {
         ev.preventDefault();
         console.log("Enviar datos :",email,password);
      };
