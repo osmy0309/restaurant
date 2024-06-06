@@ -1,5 +1,5 @@
 import { DishApiDTO, DishDTO } from "../../shared/dtos/dishesDTO";
-import { ServiceApiDTO, ServiceDTO } from "../../shared/dtos/servicesDTO";
+import { ServiceApiDTO, ServiceDTO, seccionesApiDTO, sectionsDTO } from "../../shared/dtos/servicesDTO";
 import { SocialNetworkData, dataListgApi } from "../../shared/dtos/settingsDTO";
 import { SpaceApiDTO, SpaceDTO } from "../../shared/dtos/spacesDTO";
 
@@ -35,6 +35,16 @@ const extractPropertyFollow = (data: SpaceDTO[] | undefined) => {
   }):undefined
 };
 
+const changeNameSectionsList = (data:seccionesApiDTO[]):sectionsDTO[] =>{
+  return data.map(r => {
+    return {
+      name: r.nombre,
+      description: r.descripcion,
+      image:r.imagen
+    }
+  })
+}
+
 const changeNamePropertyServices = (data: ServiceApiDTO[]):ServiceDTO[] => {
   return data.map(d => ({
     id: d.id,
@@ -52,9 +62,10 @@ const changeNamePropertyServices = (data: ServiceApiDTO[]):ServiceDTO[] => {
   public: d.publico,
   description: d.descripcion,
   coverImage: d.imagenPortada,
-  detailedImage: d.imagenDetalladas,
+  detailedImage: d.imagenDetallada,
   idTypeService: d.idTipoServicio,
-  nameTypeService: d.nombreTipoServicio
+  nameTypeService: d.nombreTipoServicio,
+  sections:changeNameSectionsList(d.secciones),
   }))
 };
 

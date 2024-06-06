@@ -36,17 +36,19 @@ export const {
 export const selectSettings = (state: any) => state.setting.data;
 
 export const loadSettingData =
-  () =>async (dispatch: any) => {    
-    dispatch(
-      setLoading(true)
-    );
-    const response = await promiseExecution();
-    dispatch(
-      setData(response)
-    );
-    dispatch(
-      setLoading(false)
-    );
+  () => async (dispatch: any, getState: any) => {
+    if (!selectSettings(getState())?.homeImages) {
+      dispatch(
+        setLoading(true)
+      );
+      const response = await promiseExecution();
+      dispatch(
+        setData(response)
+      );
+      dispatch(
+        setLoading(false)
+      );
+    }
   };
 
 

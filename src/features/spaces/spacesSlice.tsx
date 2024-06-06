@@ -36,17 +36,19 @@ export const {
 export const selectSpaces = (state: any) => state.spaces.data;
 
 export const loadSpacesData =
-  () =>async (dispatch: any) => {
-    dispatch(
-      setLoading(true)
-    );
-    const response = await getAllSpacesApi({});
-    response && dispatch(
-      setData(response)
-    );
-    dispatch(
-      setLoading(false)
-    );
+  () => async (dispatch: any, getState: any) => {
+    if (selectSpaces(getState()).length === 0) {
+      dispatch(
+        setLoading(true)
+      );
+      const response = await getAllSpacesApi({});
+      response && dispatch(
+        setData(response)
+      );
+      dispatch(
+        setLoading(false)
+      );
+    }
   };
 
 

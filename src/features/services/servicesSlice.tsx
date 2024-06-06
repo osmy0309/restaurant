@@ -36,18 +36,19 @@ export const {
 export const selectServices = (state: any) => state.services.data;
 
 export const loadServiceData =
-  () =>async (dispatch: any) => {
-    
-    dispatch(
-      setLoading(true)
-    );
-    const response = await getAllServicesApi({});
-    response && dispatch(
-      setData(response)
-    );
-    dispatch(
-      setLoading(false)
-    );
+  () => async (dispatch: any, getState: any) => {
+    if (selectServices(getState()).length === 0) {      
+      dispatch(
+        setLoading(true)
+      );
+      const response = await getAllServicesApi({});
+      response && dispatch(
+        setData(response)
+      );
+      dispatch(
+        setLoading(false)
+      );
+    }
   };
 
 
