@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import TextField from "../form/TextField";
 import TextTarea from "../form/TextTarea";
 
 function ContactSection() {
-	const onSubmit = async (ev: any) => {};
+	const onSubmit = async (ev:FormEvent<HTMLFormElement>) => {ev.preventDefault()};
 	const [name, setName] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
 	const [messaje, setMessaje] = useState<string>("");

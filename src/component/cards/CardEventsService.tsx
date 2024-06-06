@@ -19,7 +19,7 @@ function CardEventsService({ image, title, description, index }: CardMenuProps) 
 						<div className="h-[50%] max-h-[50%] overflow-auto text-[16px] font-Roboto" dangerouslySetInnerHTML={{ __html: description }} />
 						<div className="h-[10%] flex items-center gap-2 hover:hover:animate-fade-right animate-once animate-ease-linear cursor-pointer">
 							<p className="font-Sail_Regular text-[#E38A5D] text-[32px]">Comenzar</p>
-							<img src="images/card/row.png" className="h-[10px]" />
+							<img src="/images/card/row.png" className="h-[10px]" />
 						</div>
 					</div>
 				</div>
@@ -30,7 +30,7 @@ function CardEventsService({ image, title, description, index }: CardMenuProps) 
 						<div className="h-[50%]  max-h-[50%] overflow-auto text-[16px] font-Roboto" dangerouslySetInnerHTML={{ __html: description }} />
 						<div className="h-[10%] flex items-center gap-2 hover:hover:animate-fade-right animate-once animate-ease-linear cursor-pointer">
 							<p className="font-Sail_Regular text-[#E38A5D] text-[32px]">Comenzar</p>
-							<img src="images/card/row.png" className="h-[10px]" />
+							<img src="/images/card/row.png" className="h-[10px]" />
 						</div>
 					</div>
 					<div className=" w-[50%] h-[400px] bg-transparent hover:cursor-pointer">

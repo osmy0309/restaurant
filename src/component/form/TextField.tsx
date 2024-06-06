@@ -13,7 +13,7 @@ interface TextInputProps {
 }
 
 export default function TextInput(props: TextInputProps) {
-	const [validationErrors, setValidationErrors] = useState([]);
+	const [validationErrors, _] = useState([]);
 	const [visiblelabel, setVisibleLabel] = useState(false);
 
 	const onChange = (value: string) => {

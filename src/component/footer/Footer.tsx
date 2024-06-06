@@ -60,10 +60,11 @@ function Footer() {
 						))}
 					</div>
 				</div>
+				<div className="col-start-2 col-span-2">
+				<img className="ml-[42%] h-[10rem] hover:cursor-pointer" alt="X" src={`/images/card/footerdown.png`} />
+				</div>
 			</div>
-			<div className="relative top-[12rem] left-[50%]">
-				<img className="h-[10rem] hover:cursor-pointer" alt="X" src={`/images/card/footerdown.png`} />
-			</div>
+			
 		</>
 	);
 }

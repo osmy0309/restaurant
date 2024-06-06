@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import CardEventsService from "../../cards/CardEventsService";
-import { RootState } from "../../../app/store";
+import CardEventsService from "../cards/CardEventsService";
+import { RootState } from "../../app/store";
 
 function ServicesSection() {
 	let services = useSelector((state: RootState) => state.services.data);

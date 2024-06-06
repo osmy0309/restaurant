@@ -14,9 +14,10 @@ export interface ServiceApiDTO {
   publico:boolean;
   descripcion:string;
   imagenPortada:string;
-  imagenDetalladas:string;
+  imagenDetallada:string;
   idTipoServicio:number;
   nombreTipoServicio:string;
+  secciones:seccionesApiDTO[];
 }
 export interface ServiceDTO {
   id: number,
@@ -37,5 +38,18 @@ export interface ServiceDTO {
   detailedImage: string;
   idTypeService: number;
   nameTypeService: string;
+  sections:sectionsDTO[];
+}
+
+ export interface seccionesApiDTO{
+  nombre:string;
+  descripcion:string;
+  imagen:string;
+}
+
+export interface sectionsDTO{
+  name:string;
+  description:string;
+  image:string;
 }
 
