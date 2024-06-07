@@ -46,7 +46,7 @@ function Menu() {
 						<p className="font-Roboto">Iván</p> <p className="font-Jaini_Purva">ChefsJusto </p>
 					</section>
 				</div>
-				<div className="w-[40%] hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">
+				<div className="w-[60%] hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">
 					<Link to="/">
 						<div
 							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
@@ -190,36 +190,38 @@ function Menu() {
 						</Link>
 					)}
 				</div>
-				<div className=" w-[40%] text-[#FFFFFF] flex gap-6 items-center mr-5 right-0">
-					<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem] hidden md:inline-block" />
+				<div className=" w-[40%] text-[#FFFFFF] flex gap-3 items-center mr-5 right-0">
+					<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem]  hidden md:inline-block" />
 					<img src="/images/menu/solar_user-broken.png" className="w-[2.5rem] h-[2.5rem] " />
-					<div className="flex w-[60%] ">
-						<div className=" flex relative rounded-full w-[45px] h-[45px] bg-white !items-center !justify-center">
-							<div className="absolute  w-[90%]  flex  h-[90%] rounded-full bg-orange-400 items-center justify-center ">
-								<p className="text-center text-white  text-[25px] justify-center items-center">{auth?.email.charAt(0).toUpperCase()}</p>
+					{auth && (
+						<div className="flex w-[60%] ">
+							<div className=" flex relative rounded-full w-[45px] h-[45px] bg-white !items-center !justify-center">
+								<div className="absolute  w-[90%]  flex  h-[90%] rounded-full bg-[#E87C7C] items-center justify-center ">
+									<p className="text-center text-white  text-[25px] justify-center items-center">{auth?.email.charAt(0).toUpperCase()}</p>
+								</div>
 							</div>
-						</div>
 
-						<div />
+							<div />
 
-						<div className="flex  pl-[1rem] relative justify-center items-center font-bold">
-							<p className="pr-[0.5rem]">{auth?.email}</p>
-							<div className="hover:cursor-pointer" onClick={() => setOut(!out)}>
-								<FontAwesomeIcon icon={faChevronDown} className="size-[0.6rem]" onClick={() => setOut(!out)} />
-							</div>
-							<div className={`hover:cursor-auto  ${out ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}>
-								<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[15%] left-[95%]">
-									<div
-										//onMouseOut={() => setEspaciosSelected(false)}
-										className=" hover:cursor-pointer absolute inset-0 -left-[190px] top-[10px] flex items-center !w-[200px] !h-[50px]  justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-s-[5px] rounded-br-[5px]"
-										style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
-									>
-										<div className="!w-[200px] flex pt-8 pb-8 pl-[2rem] ">Cerrar sesión</div>
+							<div className="flex  pl-[1rem] relative justify-center items-center font-bold">
+								<p className="pr-[0.5rem]">{auth?.email}</p>
+								<div className="hover:cursor-pointer" onClick={() => setOut(!out)}>
+									<FontAwesomeIcon icon={faChevronDown} className="size-[0.6rem]" onClick={() => setOut(!out)} />
+								</div>
+								<div className={`hover:cursor-auto  ${out ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}>
+									<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[15%] left-[95%]">
+										<div
+											//onMouseOut={() => setEspaciosSelected(false)}
+											className=" hover:cursor-pointer absolute inset-0 -left-[190px] top-[10px] flex items-center !w-[200px] !h-[50px]  justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-s-[5px] rounded-br-[5px]"
+											style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
+										>
+											<div className="!w-[200px] flex pt-8 pb-8 pl-[2rem] ">Cerrar sesión</div>
+										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					)}
 
 					<div className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
 						<p className=" font-bold">Reserva</p>
