@@ -12,6 +12,7 @@ import { loadSpacesData } from "../../features/spaces/spacesSlice";
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
 	const [espaciosSelected, setEspaciosSelected] = useState(false);
+	const [out, setOut] = useState(false);
 	const location = useLocation();
 	const handleClickServices = () => {
 		setServicesSelected(!servicesSelected);
@@ -200,14 +201,23 @@ function Menu() {
 						</div>
 
 						<div />
-						<div className="flex absolute pl-[4rem] mt-[0.5rem] justify-center items-center font-bold">
+
+						<div className="flex  pl-[1rem] relative justify-center items-center font-bold">
 							<p className="pr-[0.5rem]">{auth?.email}</p>
-							<FontAwesomeIcon
-								icon={faChevronDown}
-								className="size-[0.6rem]"
-								onMouseEnter={() => setServicesSelected(true)}
-								onClick={handleClickServices}
-							/>
+							<div className="hover:cursor-pointer" onClick={() => setOut(!out)}>
+								<FontAwesomeIcon icon={faChevronDown} className="size-[0.6rem]" onClick={() => setOut(!out)} />
+							</div>
+							<div className={`hover:cursor-auto  ${out ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}>
+								<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[15%] left-[95%]">
+									<div
+										//onMouseOut={() => setEspaciosSelected(false)}
+										className=" hover:cursor-pointer absolute inset-0 -left-[190px] top-[10px] flex items-center !w-[200px] !h-[50px]  justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-s-[5px] rounded-br-[5px]"
+										style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
+									>
+										<div className="!w-[200px] flex pt-8 pb-8 pl-[2rem] ">Cerrar sesión</div>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
