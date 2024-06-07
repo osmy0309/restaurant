@@ -1,9 +1,7 @@
-import { useState } from "react";
 import FormLogin from "../../component/login/form";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-const Login = ({ init = true }) => {
-	const [login, setLogin] = useState(init);
+const Login = () => {
 	const { type } = useParams();
 	return (
 		<>
@@ -15,12 +13,12 @@ const Login = ({ init = true }) => {
 					<div className="font-Kaushan_Script text-[32px] ">
 						Iván<span className="text-[32px] font-Sail_Regular">Chefs Justo</span>
 					</div>
-					<FormLogin login={login} />
+					<FormLogin/>
 					<div className="font-bold font-Roboto text-[16px] ">
 						{type == "login" ? "No tienes cuenta" : "Ya tienes una cuenta"}{" "}
-						<a className="text-[16px] font-Roboto text-[#E38A5D] hover:cursor-pointer" onClick={() => setLogin(!login)}>
+						<Link className="text-[16px] font-Roboto text-[#E38A5D] hover:cursor-pointer" to={type == "login" ? "/register/register" : "/register/login"}>
 							{type == "login" ? "registrate aquí" : "entra aqui"}
-						</a>
+						</Link>
 					</div>
 				</div>
 			</div>

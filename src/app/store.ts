@@ -8,12 +8,16 @@ import settingSlice from "../features/settings/settingsSlice";
 import servicesSlice from "../features/services/servicesSlice";
 import dishesSlice from "../features/dishes/dishesSlice";
 import spacesSlice from "../features/spaces/spacesSlice";
+import authSlice from "../features/auth/authSlice";
+import termsSlice from "../features/terms/termsSlice";
 
 const rootReducer = combineReducers({
+  auth:authSlice,
   setting:settingSlice,
   services:servicesSlice,
   dishes:dishesSlice,
   spaces:spacesSlice,
+  terms:termsSlice,
 });
 
 

@@ -5,25 +5,25 @@ import { getAllSpacesApi } from "./spacesApi";
 
 let settingHomeImages = () => {
   return Axios.post(
-    `/portada/listar`
+    `/service/portada/listar`
   );
 };
 
 let settingHomeFooterAboutUs = () => {
   return Axios.post(
-    `/sobre/listar`
+    `/service/sobre/listar`
   );
 };
 
 let settingHomeFooterBooking = () => {
   return Axios.post(
-    `/item_reserva/listar`
+    `/service/item_reserva/listar`
   );
 };
 
 let settingHomeFooterContactData = () => {
   return Axios.post(
-    `/datos_contacto/listar`
+    `/service/datos_contacto/listar`
   );
 };
 

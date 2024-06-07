@@ -1,12 +1,30 @@
 import { FormEvent, useState } from "react";
 import TextField from "../form/TextField";
 import TextTarea from "../form/TextTarea";
+import { contactUsApi } from "../../services/contactUsApi";
+import { useSelector } from "react-redux";
+import { RootState } from "../../app/store";
+import { notification } from "antd";
 
 function ContactSection() {
-	const onSubmit = async (ev:FormEvent<HTMLFormElement>) => {ev.preventDefault()};
+	let auth = useSelector((state: RootState) => state.auth.data);
+	const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
+		ev.preventDefault()
+		if(name != "" && email != "" && message != ""){
+			setLoading(true)
+			const response = await contactUsApi({name,email,message});
+			setLoading(false)
+			response.status === 200 && notification.success({
+				message: `Mensaje enviado`,
+				description:"Espere la respuesta a su correo",
+				placement: "bottom",
+			  });
+		}
+	};
+	const [loading,setLoading] = useState<boolean>(false);
 	const [name, setName] = useState<string>("");
-	const [email, setEmail] = useState<string>("");
-	const [messaje, setMessaje] = useState<string>("");
+	const [email, setEmail] = useState<string>(auth?.email || "");
+	const [message, setMessage] = useState<string>("");
 
 	return (
 		<>
@@ -17,8 +35,17 @@ function ContactSection() {
 
 				<div className="w-[40%]">
 					<form onSubmit={onSubmit} className="w-[100%] flex flex-col gap-[3rem] pb-[2rem] items-center">
-						<TextField name="name" placeholder="Nombre/Alias" label="Nombre/Alias" type="text" value={name} onChange={(value) => setName(value)} />
 						<TextField
+							required
+							name="name"
+							placeholder="Nombre/Alias"
+							label="Nombre/Alias"
+							type="text"
+							value={name}
+							onChange={(value) => setName(value)}
+						/>
+						<TextField
+							required
 							name="email"
 							placeholder="Correo eléctronico"
 							label="Correo eléctronico"
@@ -27,18 +54,20 @@ function ContactSection() {
 							onChange={(value) => setEmail(value)}
 						/>
 						<TextTarea
+							required
 							name="email"
 							placeholder="Mensaje"
 							label="Mensaje"
-							value={messaje}
-							onChange={(value) => setMessaje(value)}
+							value={message}
+							onChange={(value) => setMessage(value)}
 							cols={50}
 							rows={50}
 						/>
-
+		
 						<button
+							disabled={loading}
 							type="submit"
-							className=" w-[20%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300"
+							className={`${loading && 'animate-spin'} w-[20%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300`}
 						>
 							{" "}
 							<p className="text-white text-[16px] font-bold font-Roboto">Enviar</p>

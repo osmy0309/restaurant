@@ -1,20 +1,16 @@
 import { notification } from "antd";
 import axios from "axios";
 import LoginDTO from "../shared/dtos/loginDTO";
+import Axios from "./Axios";
 
-export const adminLogin = async (credentials: LoginDTO) => {
-  const url = import.meta.env.VITE_REACT_APP_API_URL;  
-  
+export const adminLoginApi = async () => {  
+  const email = import.meta.env.VITE_ADMIN_EMAIL;
+  const password = import.meta.env.VITE_ADMIN_PASSWORD;
   const result = await axios
-    .post(`${url}/api/login_check`, credentials)
+    .post(`/api/login_check`, {email,password})
     .then((response: any) => {
-      localStorage.setItem("token", response.token);
-      notification.success({
-        message: "Autenticacion exitosa",
-        description: "",
-        placement: "bottom",
-      });
-      return response.data;
+      localStorage.setItem("token-admin", response.token);
+      return response;
     })
     .catch((error: any) => {
       notification.error({
@@ -28,4 +24,24 @@ export const adminLogin = async (credentials: LoginDTO) => {
     });
 
   return result;
+};
+
+export const LoginApi = async (credentials: LoginDTO) => { 
+  try {
+    return await Axios.post(
+      `service/autenticar`,credentials
+    );
+  } catch (error) {
+    console.error(error)
+  }
+};
+
+export const registerApi = async (credentials: LoginDTO) => {  
+  try {
+    return await Axios.post(
+      `/service/perfil/crear`,credentials
+    );
+  } catch (error) {
+    console.error(error)
+  }
 };

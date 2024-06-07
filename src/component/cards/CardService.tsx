@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CardMenuProps {
 	image: string;
 	title: string;
@@ -7,8 +9,9 @@ interface CardMenuProps {
 	length: number;
 }
 
-function CardService({ image, title, description, index, length }: CardMenuProps) {
+function CardService({ image, title, description, index, length,id }: CardMenuProps) {
 	return (
+		<Link to={`/services/${id}`}>
 		<div
 			className={`h-full flex flex-col bg-transparent z-10 items-center bg-white  hover:shadow-left-bottom transition-shadow duration-300 rounded-[20px] ${
 				length % 3 == 2 && index > length - (length % 3)
@@ -26,6 +29,7 @@ function CardService({ image, title, description, index, length }: CardMenuProps
 				<div className=" text-[16px] font-Roboto text-[#888888] text-center" dangerouslySetInnerHTML={{ __html: description }}/>
 			</div>
 		</div>
+		</Link>
 	);
 }
 

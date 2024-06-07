@@ -6,7 +6,7 @@ interface paramsGetAll {
 export const getAllDishesApi = async (params:paramsGetAll) => {  
    try {
     const response = await Axios.post(
-      `/plato/listar`,params
+      `/service/plato/listar`,params
     );
     return changeNamePropertyDishes(response.data.data)
    } catch (error) {
@@ -17,7 +17,7 @@ export const getAllDishesApi = async (params:paramsGetAll) => {
   export const getAllChefSuggestionsApi = async () => {  
     try {
       const response = await Axios.post(
-        `plato/listar-sugerencia-chef`
+        `/service/plato/listar-sugerencia-chef`
       );
       return changeNamePropertyDishes(response.data.data)
     } catch (error) {

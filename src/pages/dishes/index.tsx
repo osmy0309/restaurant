@@ -29,11 +29,11 @@ function Dishes() {
 	return (
 		<>
 			<ContainerLayout banner={false} key={"page-home"}>
-				<div className="flex flex-col items-center justify-center bg-black pt-[2rem] z-10">
+				<div className="flex flex-col items-center justify-center bg-black pt-[2rem] mt-[80px] z-10 bg-[url('/images/banner/Banners.png')]">{/*images/dish/font.png */}
 					<div className="flex space-x-4  pb-[2rem]">
 						{
 							spaces.length > 0 && spaces.map((data: SpaceDTO) => (
-								<div onClick={() => handleSpaceSelect(data.id)} className={`${spaceId == data.id ? 'bg-[#E38A5D]' : 'bg-[#ffebe1]'} rounded-[5px] flex justify-center items-center p-2 px-8 tracking-[5%] leading-[16px] text-[14px] font-normal font-Roboto hover:cursor-pointer hover:bg-[#e0c5b8] transition-colors duration-300`}>
+								<div key={`space-filter-dishes-${data.id}`} onClick={() => handleSpaceSelect(data.id)} className={`${spaceId == data.id ? 'bg-[#E38A5D]' : 'bg-[#ffebe1]'} rounded-[5px] flex justify-center items-center p-2 px-8 tracking-[5%] leading-[16px] text-[14px] font-normal font-Roboto hover:cursor-pointer hover:bg-[#e0c5b8] transition-colors duration-300`}>
 									{
 										data.chortName
 									}
@@ -42,10 +42,10 @@ function Dishes() {
 						}
 
 					</div>
-					<div className="text-[64px] font-Sail_Regular pb-[3rem] text-[#fff] mt-20 flex">
+					<div className="text-[40px] font-Sail_Regular pb-[3rem] text-[#fff] mt-5 flex">
 						<img
 							src="/images/dish/icon.png"
-							className="text-white w-[6rem] h-[8rem] pb-[3rem] mr-2 hover:cursor-pointer"
+							className="text-white w-[30px] h-[40px] mt-2 mr-2 hover:cursor-pointer"
 						/>
 						Menús</div>
 

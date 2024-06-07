@@ -1,7 +1,7 @@
 import Axios from "./Axios";
 
-export const getTermsApi = async ({params={}}) => {  
+export const getAllTermsApi = async () => {  
     return await Axios.post(
-      `/terminos_condiciones/listar`,params
+      `/service/terminos_condiciones/listar`
     );
   };

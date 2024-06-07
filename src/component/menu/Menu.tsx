@@ -25,6 +25,7 @@ function Menu() {
 	};
 	const dispatch = useDispatch<AppDispatch>();
 	let services = useSelector((state: RootState) => state.services.data);
+	let auth = useSelector((state: RootState) => state.auth.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
 	useEffect(() => {
 		dispatch(loadServiceData());
@@ -151,6 +152,17 @@ function Menu() {
 					>
 						Contact
 					</div>
+					<Link to="/terms">
+						<div
+							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/terms" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
+							onMouseEnter={() => {
+								setEspaciosSelected(false);
+								setServicesSelected(false);
+							}}
+						>
+							Términos
+						</div>
+					</Link>
 					<Link to="/dishes">
 						<div
 							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/dishes" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
@@ -162,6 +174,17 @@ function Menu() {
 							Menús
 						</div>
 					</Link>
+					{auth?.email && <Link to="/bookings">
+						<div
+							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/bookings" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
+							onMouseEnter={() => {
+								setEspaciosSelected(false);
+								setServicesSelected(false);
+							}}
+						>
+							Mis reservas
+						</div>
+					</Link>}
 				</div>
 				<div className=" text-[#FFFFFF] flex gap-6 items-center mr-5 right-0">
 					<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem] hidden md:inline-block" />

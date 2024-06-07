@@ -6,7 +6,7 @@ interface paramsGetAll {
 export const getAllServicesApi = async (params:paramsGetAll) => {
     try {
       const response =  await Axios.post(
-        `/servicio/listar`,params
+        `/service/servicio/listar`,params
       );    
       return changeNamePropertyServices(response?.data?.data);
     } catch (error) {

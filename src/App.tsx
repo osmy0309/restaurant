@@ -10,6 +10,9 @@ import { useEffect } from "react";
 import { loadSettingData } from "./features/settings/settingsSlice";
 import { loadServiceData } from "./features/services/servicesSlice";
 import { loadDishesData } from "./features/dishes/dishesSlice";
+import { autoLogin } from "./features/auth/authSlice";
+import BookingsPage from "./pages/bookings";
+import TermsPage from "./pages/terms";
 
 function App() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -17,6 +20,8 @@ function App() {
 		dispatch(loadSettingData());
 		dispatch(loadServiceData());
 		dispatch(loadDishesData());
+		dispatch(autoLogin());
+		//dispatch(logout());
 	}, []);
 	return (
 		<BrowserRouter>
@@ -34,7 +39,7 @@ function App() {
 			</div>
 			<div className="overflow-auto">
 				<Routes>
-					<Route path="/register/:type" element={<Login init={false} />} />
+					<Route path="/register/:type" element={<Login/>} />
 				</Routes>
 			</div>
 			<div className="overflow-auto">
@@ -53,6 +58,20 @@ function App() {
 				<Routes>
 					<>
 						<Route path="/services/:id" element={<ServicesPage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/bookings" element={<BookingsPage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/terms" element={<TermsPage />} />
 					</>
 				</Routes>
 			</div>
