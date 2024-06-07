@@ -23,7 +23,7 @@ export default function TextInput(props: TextInputProps) {
 	return (
 		<label className=" text-accent-color flex flex-col gap-1 w-full">
 			<div className={`${!visiblelabel ? "hidden" : ""} animate-fade-up animate-ease-linear `}>{props.label}</div>
-			{props.required && "*"}
+			{/*props.required && "*"*/}
 			<input
 				required={props.required}
 				disabled={props.disabled}

@@ -31,11 +31,12 @@ function Menu() {
 		dispatch(loadServiceData());
 		dispatch(loadSpacesData());
 	}, []);
+	console.log("AUNTENTICACION", auth);
 
 	return (
 		<>
 			<div className={`fixed top-0 left-0 right-0 bg-transparent md:bg-bgmenu h-[83px] flex items-center justify-between z-50`}>
-				<div>
+				<div className="w-[20%]">
 					<section className="text-[#FFFFFF] text-[32px] flex md:px-6  items-center">
 						<img
 							src="/images/menu/iconamoon_menu-burger-horizontal-bold.png"
@@ -44,7 +45,7 @@ function Menu() {
 						<p className="font-Roboto">Iván</p> <p className="font-Jaini_Purva">ChefsJusto </p>
 					</section>
 				</div>
-				<div className="hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">
+				<div className="w-[40%] hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">
 					<Link to="/">
 						<div
 							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
@@ -174,34 +175,59 @@ function Menu() {
 							Menús
 						</div>
 					</Link>
-					{auth?.email && <Link to="/bookings">
-						<div
-							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/bookings" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
-							onMouseEnter={() => {
-								setEspaciosSelected(false);
-								setServicesSelected(false);
-							}}
-						>
-							Mis reservas
-						</div>
-					</Link>}
+					{auth?.email && (
+						<Link to="/bookings">
+							<div
+								className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/bookings" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
+								onMouseEnter={() => {
+									setEspaciosSelected(false);
+									setServicesSelected(false);
+								}}
+							>
+								Mis reservas
+							</div>
+						</Link>
+					)}
 				</div>
-				<div className=" text-[#FFFFFF] flex gap-6 items-center mr-5 right-0">
+				<div className=" w-[40%] text-[#FFFFFF] flex gap-6 items-center mr-5 right-0">
 					<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem] hidden md:inline-block" />
 					<img src="/images/menu/solar_user-broken.png" className="w-[2.5rem] h-[2.5rem] " />
-					<Link to="/register/login">
-						<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
-							<p className=" font-bold">Iniciar</p>
+					<div className="flex w-[60%] ">
+						<div className=" flex relative rounded-full w-[45px] h-[45px] bg-white !items-center !justify-center">
+							<div className="absolute  w-[90%]  flex  h-[90%] rounded-full bg-orange-400 items-center justify-center ">
+								<p className="text-center text-white  text-[25px] justify-center items-center">{auth?.email.charAt(0).toUpperCase()}</p>
+							</div>
 						</div>
-					</Link>
-					<Link to="/register/register">
-						<div className="hover:cursor-pointer text-FF80 text-[16px] border border-FF40 rounded px-3 py-2 hidden md:inline-block">
-							<p className=" font-bold">Registrarse</p>
+
+						<div />
+						<div className="flex absolute pl-[4rem] mt-[0.5rem] justify-center items-center font-bold">
+							<p className="pr-[0.5rem]">{auth?.email}</p>
+							<FontAwesomeIcon
+								icon={faChevronDown}
+								className="size-[0.6rem]"
+								onMouseEnter={() => setServicesSelected(true)}
+								onClick={handleClickServices}
+							/>
 						</div>
-					</Link>
-					<div className="hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
+					</div>
+
+					<div className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
 						<p className=" font-bold">Reserva</p>
 					</div>
+					{!auth && (
+						<Link to="/register/login">
+							<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
+								<p className=" font-bold">Iniciar</p>
+							</div>
+						</Link>
+					)}
+					{!auth && (
+						<Link to="/register/register">
+							<div className="hover:cursor-pointer text-FF80 text-[16px] border border-FF40 rounded px-3 py-2 hidden md:inline-block">
+								<p className=" font-bold">Registrarse</p>
+							</div>
+						</Link>
+					)}
 				</div>
 			</div>
 		</>

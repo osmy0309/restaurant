@@ -4,6 +4,7 @@ import OrganiceEvent from "./pages/OrganiceEvent";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/login";
 import ServicesPage from "./pages/services";
+import SpacesPage from "./pages/spaces";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "./app/store";
 import { useEffect } from "react";
@@ -39,7 +40,7 @@ function App() {
 			</div>
 			<div className="overflow-auto">
 				<Routes>
-					<Route path="/register/:type" element={<Login/>} />
+					<Route path="/register/:type" element={<Login />} />
 				</Routes>
 			</div>
 			<div className="overflow-auto">
@@ -58,6 +59,13 @@ function App() {
 				<Routes>
 					<>
 						<Route path="/services/:id" element={<ServicesPage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/spaces/:id" element={<SpacesPage />} />
 					</>
 				</Routes>
 			</div>
