@@ -32,8 +32,8 @@ function Dishes() {
 	return (
 		<>
 			<ContainerLayout banner={false} key={"page-home"}>
-				<div className="flex flex-col items-center justify-center bg-black pt-[2rem] mt-[80px] z-10 bg-[url('/images/fondo_menu.png')]">{/*images/dish/font.png */}
-					<div className="flex space-x-4  pb-[2rem]">
+				<div className="bg-top bg-no-repeat flex flex-col items-center justify-center bg-black pt-[2rem] mt-[80px] z-10 bg-[url('/images/fondo_menu.png')]">{/*images/dish/font.png */}
+					<div className="flex space-x-4  pb-[2rem] mt-20">
 						{
 							spaces.length > 0 && spaces.map((data: SpaceDTO) => (
 								<div key={`space-filter-dishes-${data.id}`} onClick={() => handleSpaceSelect(data.id)} className={`${spaceId == data.id ? 'bg-[#E38A5D]' : 'bg-[#ffebe1]'} rounded-[5px] flex justify-center items-center p-2 px-8 tracking-[5%] leading-[16px] text-[14px] font-normal font-Roboto hover:cursor-pointer hover:bg-[#e0c5b8] transition-colors duration-300`}>
