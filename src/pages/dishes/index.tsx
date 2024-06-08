@@ -12,15 +12,18 @@ function Dishes() {
 	const dispatch = useDispatch<AppDispatch>();
 	let dishes = useSelector((state: RootState) => state.dishes.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
+	const [data,setData] = useState<DishDTO[]>([]);
 	const [spaceId, setSpaceId] = useState<number>(0);
 	useEffect(() => {
 		dispatch(loadDishesData());
 		dispatch(loadSpacesData())
 	}, []);
 
+
 	useEffect(() => {
-		spaceId != 0 ? dispatch(loadDishesData(spaceId)) : dispatch(loadDishesData());;
-	}, [spaceId])
+		spaceId != 0 ? setData(dishes.filter(d=>d.idSpace==spaceId)) : setData(dishes);
+		
+	}, [spaceId,dishes])
 
 	const handleSpaceSelect = (id: number): void => {
 		spaceId != id ? setSpaceId(id) : setSpaceId(0);
@@ -50,7 +53,7 @@ function Dishes() {
 						Menús</div>
 
 					<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[10%] pt-5 pb-10  gap-9">
-						{dishes.length > 0 && dishes.map((data: DishDTO) => (
+						{data.length > 0 && data.map((data: DishDTO) => (
 							<CardMenu
 								key={`dish-${data.id}`}
 								image={data.image}
