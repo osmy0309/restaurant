@@ -36,8 +36,8 @@ export const {
 export const selectSpaces = (state: any) => state.spaces.data;
 
 export const loadSpacesData =
-  () => async (dispatch: any, getState: any) => {
-    if (selectSpaces(getState()).length === 0) {
+  () => async (dispatch: any, getState: any) => {        
+    if (selectSpaces(getState()).length === 0 && !getState().spaces.loading) {      
       dispatch(
         setLoading(true)
       );

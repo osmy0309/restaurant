@@ -36,7 +36,7 @@ export const selectTerms = (state: any) => state.terms.data;
 
 export const loadTermsData =
   () => async (dispatch: any, getState: any) => {
-    if (selectTerms(getState()) == "") {
+    if (selectTerms(getState()) == "" && !getState().terms.loading) {
       dispatch(
         setLoading(true)
       );

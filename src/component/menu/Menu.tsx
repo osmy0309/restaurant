@@ -33,7 +33,6 @@ function Menu() {
 		dispatch(loadServiceData());
 		dispatch(loadSpacesData());
 	}, []);
-	console.log("AUNTENTICACION", auth);
 
 	const handleLogout = () => {
 		dispatch(logout());
@@ -48,7 +47,13 @@ function Menu() {
 							src="/images/menu/iconamoon_menu-burger-horizontal-bold.png"
 							className="w-[2rem] h-[2rem] md:hidden mr-3 ml-2 hover:cursor-pointer"
 						/>
-						<p className="font-Roboto">Iván</p> <p className="font-Jaini_Purva">ChefsJusto </p>
+						<Link to="/">
+						<img
+							src="/images/menu/IvánChefs Justo.png"
+							className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer"
+						/>
+						</Link>
+						{/*<p className="font-Roboto">Iván </p> <p className="font-Jaini_Purva"> Chefs Justo </p>*/}
 					</section>
 				</div>
 				<div className="w-[60%] hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">

@@ -5,7 +5,7 @@ function Footer() {
 	let setting = useSelector((state: RootState) => state.setting.data);
 	return (
 		<>
-			<div className={`bg-bgmenu h-auto absolute  px-[5rem]  py-10 grid grid-cols-2 md:grid-cols-4 gap-5`}>
+			<div className={`bg-bgmenu h-auto absolute  px-[5rem]  py-10 grid grid-cols-2 md:grid-cols-4 gap-5 w-100`}>
 				<div className=" ">
 					<h3 className="text-[18px] font-bold h-[2rem] text-[#E38A5D]">{setting?.footer?.aboutUs?.name}</h3>
 					<div className=" text-[16px] font-Roboto text-[#fff] " dangerouslySetInnerHTML={{ __html: setting?.footer?.aboutUs?.description || "" }} />

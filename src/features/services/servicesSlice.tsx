@@ -37,7 +37,7 @@ export const selectServices = (state: any) => state.services.data;
 
 export const loadServiceData =
   () => async (dispatch: any, getState: any) => {
-    if (selectServices(getState()).length === 0) {      
+    if (selectServices(getState()).length === 0 && !getState().services.loading) {      
       dispatch(
         setLoading(true)
       );

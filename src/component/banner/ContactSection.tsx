@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import TextField from "../form/TextField";
 import TextTarea from "../form/TextTarea";
 import { contactUsApi } from "../../services/contactUsApi";
@@ -14,6 +14,8 @@ function ContactSection() {
 			setLoading(true)
 			const response = await contactUsApi({name,email,message});
 			setLoading(false)
+			setName("");
+			setMessage("");
 			response.status === 200 && notification.success({
 				message: `Mensaje enviado`,
 				description:"Espere la respuesta a su correo",
@@ -23,8 +25,12 @@ function ContactSection() {
 	};
 	const [loading,setLoading] = useState<boolean>(false);
 	const [name, setName] = useState<string>("");
-	const [email, setEmail] = useState<string>(auth?.email || "");
+	const [email, setEmail] = useState<string>("");
 	const [message, setMessage] = useState<string>("");
+
+	useEffect(()=>{
+		auth?.email && setEmail(auth?.email)
+	},[auth])
 
 	return (
 		<>

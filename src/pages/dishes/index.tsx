@@ -15,10 +15,10 @@ function Dishes() {
 	const [data,setData] = useState<DishDTO[]>([]);
 	const [spaceId, setSpaceId] = useState<number>(0);
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		dispatch(loadDishesData());
 		dispatch(loadSpacesData())
 	}, []);
-
 
 	useEffect(() => {
 		spaceId != 0 ? setData(dishes.filter(d=>d.idSpace==spaceId)) : setData(dishes);
@@ -32,7 +32,7 @@ function Dishes() {
 	return (
 		<>
 			<ContainerLayout banner={false} key={"page-home"}>
-				<div className="flex flex-col items-center justify-center bg-black pt-[2rem] mt-[80px] z-10 bg-[url('/images/banner/Banners.png')]">{/*images/dish/font.png */}
+				<div className="flex flex-col items-center justify-center bg-black pt-[2rem] mt-[80px] z-10 bg-[url('/images/fondo_menu.png')]">{/*images/dish/font.png */}
 					<div className="flex space-x-4  pb-[2rem]">
 						{
 							spaces.length > 0 && spaces.map((data: SpaceDTO) => (

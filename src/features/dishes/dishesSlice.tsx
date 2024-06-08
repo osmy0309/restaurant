@@ -44,7 +44,7 @@ export const selectChefSuggestions = (state: any) => state.dishes.chefSuggestion
 
 export const loadDishesData =
   (spaceId?: number) => async (dispatch: any, getState: any) => {
-    if (selectDishes(getState()).length === 0) {
+    if (selectDishes(getState()).length === 0 && !getState().dishes.loading) {
       dispatch(
         setLoading(true)
       );
