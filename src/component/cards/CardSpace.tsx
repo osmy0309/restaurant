@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CardMenuProps {
 	image: string;
 	title: string;
@@ -6,8 +8,9 @@ interface CardMenuProps {
 	category: string;
 }
 
-function CardSpace({ image, title, description, category }: CardMenuProps) {
+function CardSpace({ image, title, description, category,id }: CardMenuProps) {
 	return (
+		<Link to={`/spaces/${id}`}>
 		<div
 			className={`h-full flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu `}
 		>
@@ -33,6 +36,7 @@ function CardSpace({ image, title, description, category }: CardMenuProps) {
 				<img className="h-[30px] hover:cursor-pointer" src="/images/card/whatsapp.png" />
 			</div>
 		</div>
+		</Link>
 	);
 }
 

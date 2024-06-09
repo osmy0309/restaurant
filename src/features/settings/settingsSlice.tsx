@@ -37,7 +37,7 @@ export const selectSettings = (state: any) => state.setting.data;
 
 export const loadSettingData =
   () => async (dispatch: any, getState: any) => {
-    if (!selectSettings(getState())?.homeImages) {
+    if (!selectSettings(getState())?.homeImages && !getState().setting.loading) {
       dispatch(
         setLoading(true)
       );

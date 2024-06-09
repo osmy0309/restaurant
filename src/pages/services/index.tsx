@@ -16,8 +16,12 @@ const ServicesPage = () => {
 	const [service, setService] = useState<ServiceDTO | undefined>(undefined);
 	let services = useSelector((state: RootState) => state.services.data);
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		dispatch(loadServiceData());
 	}, []);
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [id]);
 	useEffect(() => {
 		services.length > 0 && id && setService(services.find((s) => s.id == parseInt(id)));
 	}, [id, services]);

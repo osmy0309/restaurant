@@ -19,6 +19,10 @@ const SpacesPage = () => {
 	useEffect(() => {
 		dispatch(loadSpacesData());
 	}, []);
+
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [id]);
 	useEffect(() => {
 		spaces.length > 0 && id && setSpace(spaces.find((s) => s.id == parseInt(id)));
 	}, [id, spaces]);

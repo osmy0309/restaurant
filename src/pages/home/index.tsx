@@ -16,13 +16,14 @@ import ContainerLayout from "../../component/layout/containerLayout";
 const Home = () => {
 	const dispatch = useDispatch<AppDispatch>();
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		dispatch(loadSettingData());
 		dispatch(loadServiceData());
 		dispatch(loadDishesData());
 		dispatch(loadSpacesData());
 		dispatch(loadChefSuggestionsData());
 	}, []);
-
+	
 	return (
 		<> 
 			<ContainerLayout banner={true} key={"page-home"}>

@@ -8,7 +8,7 @@ import Axios from "./Axios";
       try {
         const response =  await Axios.post(
           `/service/espacio/listar`,params
-        );    
+        );            
         return changeNamePropertySpaces(response?.data?.data);
       } catch (error) {
         console.error(error)

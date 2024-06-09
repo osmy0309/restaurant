@@ -1,8 +1,12 @@
 import ContainerLayout from "../../component/layout/containerLayout";
 import ContactSection from "../../component/banner/ContactSection";
 import BookingSection from "../../component/banner/BookingSection";
+import { useEffect } from "react";
 
 const BookingsPage = () => {
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	  }, [])
 	return (
 		<>
 			<ContainerLayout banner={false} key={`page-bookings`}>

@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { loadServiceData } from "../../features/services/servicesSlice";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
+import { logout } from "../../features/auth/authSlice";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
@@ -40,7 +41,10 @@ function Menu() {
 		dispatch(loadServiceData());
 		dispatch(loadSpacesData());
 	}, []);
-	console.log("AUNTENTICACION", auth);
+
+	const handleLogout = () => {
+		dispatch(logout());
+	};
 
 	return (
 		<>
@@ -51,7 +55,13 @@ function Menu() {
 							src="/images/menu/iconamoon_menu-burger-horizontal-bold.png"
 							className="w-[2rem] h-[2rem] md:hidden mr-3 ml-2 hover:cursor-pointer"
 						/>
-						<p className="font-Roboto">Iván</p> <p className="font-Jaini_Purva">ChefsJusto </p>
+						<Link to="/">
+						<img
+							src="/images/menu/IvánChefs Justo.png"
+							className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer"
+						/>
+						</Link>
+						{/*<p className="font-Roboto">Iván </p> <p className="font-Jaini_Purva"> Chefs Justo </p>*/}
 					</section>
 				</div>
 				<div className="w-[60%] hidden md:text-[#FFFFFF] md:flex md:gap-5 md:mx-auto md:font-bold">
@@ -68,9 +78,8 @@ function Menu() {
 					</Link>
 					<div className=" flex relative hover:cursor-pointer ">
 						<div
-							className={`flex items-center gap-2 hover:text-[#E38A5D] ${
-								location.pathname === "/organizationevent" ? "text-[#E38A5D]" : "text-[#FFFFFF]"
-							}`}
+							className={`flex items-center gap-2 hover:text-[#E38A5D] ${location.pathname === "/organizationevent" ? "text-[#E38A5D]" : "text-[#FFFFFF]"
+								}`}
 							onMouseEnter={() => {
 								setEspaciosSelected(false);
 								setServicesSelected(true);
@@ -152,16 +161,6 @@ function Menu() {
 							</div>
 						</div>
 					</div>
-
-					<div
-						className="hover:cursor-pointer hover:text-[#E38A5D]"
-						onMouseEnter={() => {
-							setEspaciosSelected(false);
-							setServicesSelected(false);
-						}}
-					>
-						Contact
-					</div>
 					<Link to="/terms">
 						<div
 							className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/terms" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
@@ -223,17 +222,13 @@ function Menu() {
 											className=" hover:cursor-pointer absolute inset-0 -left-[190px] top-[10px] flex items-center !w-[200px] !h-[50px]  justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-s-[5px] rounded-br-[5px]"
 											style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 										>
-											<div className="!w-[200px] flex pt-8 pb-8 pl-[2rem] ">Cerrar sesión</div>
+											<div className="!w-[200px] flex pt-8 pb-8 pl-[2rem]" onClick={() => handleLogout()}>Cerrar sesión</div>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 					)}
-
-					<div className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
-						<p className=" font-bold">Reserva</p>
-					</div>
 					{!auth && (
 						<Link to="/register/login">
 							<div className=" hover:cursor-pointer text-[16px]  px-3 py-2 hidden md:inline-block">
@@ -248,6 +243,9 @@ function Menu() {
 							</div>
 						</Link>
 					)}
+					<div className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
+						<p className=" font-bold">Reserva</p>
+					</div>
 				</div>
 			</div>
 		</>

@@ -1,7 +1,7 @@
 import { DishApiDTO, DishDTO } from "../../shared/dtos/dishesDTO";
 import { ServiceApiDTO, ServiceDTO, seccionesApiDTO, sectionsDTO } from "../../shared/dtos/servicesDTO";
 import { SocialNetworkData, dataListgApi } from "../../shared/dtos/settingsDTO";
-import { SpaceApiDTO, SpaceDTO } from "../../shared/dtos/spacesDTO";
+import { SpaceApiDTO, SpaceDTO, commetsApiDTO, commetsDTO } from "../../shared/dtos/spacesDTO";
 
 const changeNamePropertyBooking = (data: dataListgApi[]) => {
   return data.map(d => {
@@ -17,6 +17,18 @@ const changeNameNetworkList = (data:dataListgApi[]):SocialNetworkData[] =>{
     return {
       name: r.nombre,
       value: r.enlace
+    }
+  })
+}
+
+const changeCommentsList = (data:commetsApiDTO[]):commetsDTO[] =>{
+  return data.map(r => {
+    return {
+      name: r.nombre,
+      image: r.imagen,
+      rating:r.evaluacion,
+      createAt:r.creado,
+      comment:r.comentario,
     }
   })
 }
@@ -98,6 +110,9 @@ const changeNamePropertySpaces = (data: SpaceApiDTO[]):SpaceDTO[] => {
     detailedImage: d.imagenDetallada,
     networks:changeNameNetworkList(d.redesSociales),
     category:d.categoria,
+    bannerImage:d.imagenBanner,
+    movilImage:d.imagenMovil,
+    comments:changeCommentsList(d.comentarios),
   }))
 };
 

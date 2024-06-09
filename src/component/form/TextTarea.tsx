@@ -25,9 +25,9 @@ export default function TextInput(props: TextInputProps) {
 	return (
 		<label className=" text-accent-color flex flex-col gap-1 w-full">
 			<div className={`${!visiblelabel ? "hidden" : ""} animate-fade-up animate-ease-linear`}>{props.label}</div>
-			{props.required && "*"}
+			{props.required && <span className="text-[#ff0000]">*</span>}
 			<textarea
-				required={props.required}
+				//required={props.required}
 				disabled={props.disabled}
 				className={`h-[200px] placeholder-bold ${props.styleClass}  border-[1px] ${
 					validationErrors.length > 0 ? "border-red-600" : "border-[#1F0B01] border-b-2 border-x-0 border-t-0 pl-1 h-[3rem]"
