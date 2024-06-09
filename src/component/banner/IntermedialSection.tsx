@@ -5,7 +5,7 @@ function IntermedialSection() {
 	return (
 		<div className="pb-[2rem] pt-[5rem]">
 			<div className=" w-full !h-[800px] ">
-				{setting.homeImages && <img className="w-full h-full rounded-t-[20px]" src={setting.homeImages.intermedial} alt={"Banner"} />}
+				{setting.homeImages && <img className="w-full h-full " src={setting.homeImages.intermedial} alt={"Banner"} />}
 			</div>
 		</div>
 	);

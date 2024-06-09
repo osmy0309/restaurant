@@ -5,6 +5,7 @@ interface ServiceSectionProps {
 }
 
 function ServicesSections({ list }: ServiceSectionProps) {
+	console.log("espacios a mostrar", list);
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center bg-white pt-[5rem] pb-[3rem] z-10">
