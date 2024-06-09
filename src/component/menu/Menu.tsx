@@ -17,6 +17,14 @@ function Menu() {
 	const handleClickServices = () => {
 		setServicesSelected(!servicesSelected);
 	};
+	useEffect(() => {
+		let handler = () => {
+			setEspaciosSelected(false);
+			setServicesSelected(false);
+		};
+		document.addEventListener("mousedown", handler);
+	});
+
 	const handleClickSpaces = () => {
 		setEspaciosSelected(!espaciosSelected);
 	};
