@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./textfield.css";
 interface TextInputProps {
 	placeholder?: string;
-	value: string;
+	value: string | number;
 	name?: string;
 	onChange: (value: string) => void;
 	type: "text" | "email" | "password";

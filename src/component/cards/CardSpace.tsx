@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { SocialNetworkData } from "../../shared/dtos/settingsDTO";
+import IconNetwork from "../IconNetwork";
 
 interface CardMenuProps {
 	image: string;
@@ -6,9 +8,10 @@ interface CardMenuProps {
 	description: string;
 	id: number;
 	category: string;
+	networks:SocialNetworkData[];
 }
 
-function CardSpace({ image, title, description, category,id }: CardMenuProps) {
+function CardSpace({ image, title, description, category,id,networks }: CardMenuProps) {
 	return (
 		<Link to={`/spaces/${id}`}>
 		<div
@@ -31,9 +34,7 @@ function CardSpace({ image, title, description, category,id }: CardMenuProps) {
 			</div>
 
 			<div className="flex p-[36px] gap-[1rem]">
-				<img className="h-[30px] hover:cursor-pointer" src="/images/card/facebook.png" />
-				<img className="h-[30px] hover:cursor-pointer" src="/images/card/instagram.png" />
-				<img className="h-[30px] hover:cursor-pointer" src="/images/card/whatsapp.png" />
+				{networks?.length > 0 && networks.map(n=><IconNetwork network={n}/>)}
 			</div>
 		</div>
 		</Link>

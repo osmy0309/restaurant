@@ -6,6 +6,8 @@ import { AppDispatch, RootState } from "../../app/store";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
 import SelectOptions from "./SelectOptions";
 import TimePicker from "./TimePicker";
+import CalendarForm from "./Calendar";
+import TimeForm from "./TimeForm";
 
 interface ReserveFormProps {
 	email?: string;
@@ -20,24 +22,30 @@ function ReserveForm(props: ReserveFormProps) {
 	}, [])
 	const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
 		ev.preventDefault()
-		if (name != "" && email != "" && message != "") {
+		/*if (name != "" && email != "" && message != "") {
 			setLoading(true)
 			//const response = await contactUsApi({name,email,message});
 			setLoading(false)
 			setName("");
 			setMessage("");
-			/*response.status === 200 && notification.success({
+			response.status === 200 && notification.success({
 				message: `Mensaje enviado`,
 				description:"Espere la respuesta a su correo",
 				placement: "bottom",
-			  });*/
-		}
+			  });
+		}*/
 	};
 	const [loading, setLoading] = useState<boolean>(false);
 	const [location, setlocation] = useState<string>("");
-	const [name, setName] = useState<string>("");
+	const [pax, setPax] = useState<number>(0);
+	const [date, setDate] = useState<string>("");
+	const [time, setTime] = useState<string>("");
+
+	const [fullName, setFullName] = useState<string>("");
+	const [dni, setDni] = useState<string>("");
+	const [movile, setMovile] = useState<string>("");
 	const [email, setEmail] = useState<string>("");
-	const [message, setMessage] = useState<string>("");
+	const [description, setDescription] = useState<string>("");
 
 	useEffect(() => {
 		props?.email && setEmail(props?.email)
@@ -62,19 +70,21 @@ function ReserveForm(props: ReserveFormProps) {
 							placeholder="Seleccione un espacio"
 							label="Espacio"
 							options={spaces}
-							value={props?.spaceId}
+							value={props?.spaceId || ""}
 							onChange={(value) => setlocation(value)}
 						/>
 						<TimePicker/>
 						<TextField
 							required
-							name="name"
-							placeholder="Nombre/Alias"
-							label="Nombre/Alias"
+							name="number"
+							placeholder="Cantidad de personas"
+							label="Cantidad de personas"
 							type="text"
-							value={name}
-							onChange={(value) => setName(value)}
+							value={pax}
+							onChange={(value) => setPax(parseInt(value))}
 						/>
+						<CalendarForm/>
+						<TimeForm/>
 						<TextField
 							required
 							name="email"
@@ -84,13 +94,40 @@ function ReserveForm(props: ReserveFormProps) {
 							value={email}
 							onChange={(value) => setEmail(value)}
 						/>
+						<TextField
+							required
+							name="fullName"
+							placeholder="Nombre completo"
+							label="Nombre completo"
+							type="text"
+							value={fullName}
+							onChange={(value) => setFullName(value)}
+						/>
+						<TextField
+							required
+							name="dni"
+							placeholder="Pasaporte/Carnet"
+							label="Pasaporte/Carnet"
+							type="text"
+							value={dni}
+							onChange={(value) => setDni(value)}
+						/>
+						<TextField
+							required
+							name="movile"
+							placeholder="Celular"
+							label="Celular"
+							type="text"
+							value={movile}
+							onChange={(value) => setMovile(value)}
+						/>
 						<Textarea
 							required
 							name="email"
 							placeholder="Mensaje"
 							label="Mensaje"
-							value={message}
-							onChange={(value) => setMessage(value)}
+							value={description}
+							onChange={(value) => setDescription(value)}
 							cols={50}
 							rows={50}
 						/>

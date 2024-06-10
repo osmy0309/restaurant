@@ -21,7 +21,7 @@ const SpacesPage = () => {
 	}, []);
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
+		window.scrollTo(0, 0);
 	}, [id]);
 	useEffect(() => {
 		spaces.length > 0 && id && setSpace(spaces.find((s) => s.id == parseInt(id)));
@@ -32,7 +32,15 @@ const SpacesPage = () => {
 			<ContainerLayout banner={false} key={`page-service-details-${id}`}>
 				{space && (
 					<>
-						<BannerSpaces image={space.detailedImage} title={space.chortName} description={space.largeName} />
+						<BannerSpaces
+							image={space.detailedImage}
+							title={space.chortName}
+							description={space.largeName}
+							category={space.category}
+							imgmovil={space.movilImage}
+							coments={space.comments}
+							networks={space.networks}
+						/>
 						<SpacesSection list={space} />
 					</>
 				)}

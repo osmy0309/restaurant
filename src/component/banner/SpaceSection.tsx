@@ -20,6 +20,7 @@ function SpaceSection() {
 							description={data.largeName}
 							id={data.id}
 							category={data.category}
+							networks={data.networks}
 						/>
 					))}
 				</div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BookingSection() {
 	return (
 		<div className="pb-[2rem] pt-[5rem]">
@@ -11,9 +13,11 @@ function BookingSection() {
 						Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo con
 					</p>
 
+					<Link to="/reserve/table/selection">
 					<div className=" w-[30%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300">
 						<p className="text-white text-[16px] font-bold font-Roboto">Reserva</p>
 					</div>
+					</Link>
 				</div>
 				<div className=" w-full flex pl-[5rem] ">
 					<img src="/images/banner/reserva.png" className="h-full w-[70%]" />
