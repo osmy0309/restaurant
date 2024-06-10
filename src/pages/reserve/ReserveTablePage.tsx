@@ -24,7 +24,6 @@ const ReserveTablePage = () => {
 				{/*<div className="text-[64px] font-Sail_Regular pb-[3rem]">Reserva una Mesa</div>	 */}
 				</div>
 				<ReserveForm email={auth?.email} spaceId={spaceId}/>
-				<ContactSection />
 			</ContainerLayout>
 		</>
 	);
