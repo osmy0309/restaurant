@@ -49,7 +49,7 @@ function Menu() {
 						/>
 						<Link to="/">
 						<img
-							src="/images/menu/IvánChefs Justo.png"
+							src="/images/menu/IvánChefsJusto.png"
 							className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer"
 						/>
 						</Link>

@@ -14,7 +14,7 @@ interface TextInputProps {
 	errors?: any;
 }
 
-export default function TextInput(props: TextInputProps) {
+export default function Textarea(props: TextInputProps) {
 	const [validationErrors,_] = useState([]);
 	const [visiblelabel, setVisibleLabel] = useState(false);
 
