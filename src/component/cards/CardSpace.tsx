@@ -18,7 +18,7 @@ function CardSpace({ image, title, description, category, id, networks }: CardMe
 	return (
 		<Link to={`/spaces/${id}`}>
 			<div
-				className={`h-full flex flex-col rounded-[20px] bg-transparent border relative z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu `}
+				className={`h-[43rem] flex flex-col rounded-[20px] bg-transparent border relative z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu `}
 			>
 				<div className="w-[100%] bg-transparent ">
 					<img className="w-[100%] h-[250px] rounded-t-[20px]" src={`${image}`} />

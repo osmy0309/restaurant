@@ -11,7 +11,12 @@ const IconNetwork = ({ network, handleSocialLinkClick }: IconNetworkProps) => {
 	return (
 		<>
 			<a key={network.name} className="z-50" href={network.value} target="_blank" onClick={handleSocialLinkClick} rel="noopener noreferrer">
-				{<img className="h-[30px] hover:cursor-pointer hover:h-[40px] hover:rounded-full" src={`/images/card/${network.name.toLowerCase()}.png`} />}
+				{
+					<img
+						className="h-[30px] hover:cursor-pointer hover:h-[40px] hover:transition-shadow duration-300"
+						src={`/images/card/${network.name.toLowerCase()}.png`}
+					/>
+				}
 			</a>
 		</>
 	);

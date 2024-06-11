@@ -19,21 +19,9 @@ function ReserveForm(props: ReserveFormProps) {
 	const dispatch = useDispatch<AppDispatch>();
 	useEffect(() => {
 		dispatch(loadSpacesData());
-	}, [])
+	}, []);
 	const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
-		ev.preventDefault()
-		/*if (name != "" && email != "" && message != "") {
-			setLoading(true)
-			//const response = await contactUsApi({name,email,message});
-			setLoading(false)
-			setName("");
-			setMessage("");
-			response.status === 200 && notification.success({
-				message: `Mensaje enviado`,
-				description:"Espere la respuesta a su correo",
-				placement: "bottom",
-			  });
-		}*/
+		ev.preventDefault();
 	};
 	const [loading, setLoading] = useState<boolean>(false);
 	const [location, setlocation] = useState<string>("");
@@ -48,12 +36,12 @@ function ReserveForm(props: ReserveFormProps) {
 	const [description, setDescription] = useState<string>("");
 
 	useEffect(() => {
-		props?.email && setEmail(props?.email)
-	}, [props])
+		props?.email && setEmail(props?.email);
+	}, [props]);
 
-	useEffect(()=>{
-		console.log('Cambio el espacio :',location)
-	},[location])
+	useEffect(() => {
+		console.log("Cambio el espacio :", location);
+	}, [location]);
 
 	return (
 		<>
@@ -73,7 +61,7 @@ function ReserveForm(props: ReserveFormProps) {
 							value={props?.spaceId || ""}
 							onChange={(value) => setlocation(value)}
 						/>
-						<TimePicker/>
+						<TimePicker />
 						<TextField
 							required
 							name="number"
@@ -83,8 +71,8 @@ function ReserveForm(props: ReserveFormProps) {
 							value={pax}
 							onChange={(value) => setPax(parseInt(value))}
 						/>
-						<CalendarForm/>
-						<TimeForm/>
+						<CalendarForm />
+						<TimeForm />
 						<TextField
 							required
 							name="email"
@@ -135,7 +123,9 @@ function ReserveForm(props: ReserveFormProps) {
 						<button
 							disabled={loading}
 							type="submit"
-							className={`${loading && 'animate-spin'} w-[20%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300`}
+							className={`${
+								loading && "animate-spin"
+							} w-[20%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300`}
 						>
 							{" "}
 							<p className="text-white text-[16px] font-bold font-Roboto">Enviar</p>
