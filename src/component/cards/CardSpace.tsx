@@ -37,12 +37,7 @@ function CardSpace({ image, title, description, category, id, networks }: CardMe
 				</div>
 
 				<div className="absolute  -bottom-4 z-50 flex p-[36px] gap-[1rem] justify-center items-center">
-					{networks?.length > 0 &&
-						networks.map((n) => (
-							<a key={n.name} className="z-50" href={n.value} target="_blank" onClick={handleSocialLinkClick} rel="noopener noreferrer">
-								{<img className="h-[30px] hover:cursor-pointer hover:h-[40px] hover:rounded-full" src={`/images/card/${n.name.toLowerCase()}.png`} />}
-							</a>
-						))}
+					{networks?.length > 0 && networks.map((n) => <IconNetwork network={n} handleSocialLinkClick={handleSocialLinkClick} />)}
 				</div>
 			</div>
 		</Link>
