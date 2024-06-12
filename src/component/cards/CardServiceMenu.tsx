@@ -12,7 +12,7 @@ function CardServiceMenu({ image, title, description, id }: CardMenuProps) {
 	return (
 		<>
 			<Link to={`/services/${id}`}>
-				<div className="w-full h-full p-5 flex bg-transparent z-10 items-center bg-white hover:shadow-left-bottom transition-shadow duration-300 rounded-[20px] cursor-pointer">
+				<div className="w-full h-full p-5 flex bg-transparent z-10 items-center bg-white hover:shadow-3xl transition-shadow duration-300 rounded-[20px] cursor-pointer">
 					<div className="w-[30%] h-auto rounded-full flex justify-center items-center my-[1rem]">
 						<img className="w-full h-full rounded-t-[20px]" src={image} alt={title} />
 					</div>

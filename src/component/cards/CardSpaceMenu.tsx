@@ -12,7 +12,7 @@ function CardSpaceMenu({ image, title, description, category, id }: CardMenuProp
 	return (
 		<Link to={`/spaces/${id}`}>
 			<div
-				className={`w-full xl:!h-[100%] 2xl:!h-[100%] p-5 flex flex-col bg-transparent z-10 items-center bg-white  hover:shadow-left-bottom transition-shadow duration-300 rounded-[20px] cursor-pointer `}
+				className={`w-full xl:!h-[100%] 2xl:!h-[100%] p-5 flex flex-col bg-transparent z-10 items-center bg-white  hover:shadow-3xl transition-shadow duration-300 rounded-[20px] cursor-pointer `}
 			>
 				<div className={`w-[90%] h-[200px] xl:!h-[100px] 2xl:!h-[200px] !rounded-[10px] flex justify-center items-center my-[1rem]`}>
 					<img className="w-full h-full !rounded-[10px]" src={`${image}`} />

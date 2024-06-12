@@ -273,7 +273,7 @@ function Menu() {
 
 			{modalopen && (
 				<Reservation
-					style={`${modalopen ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}
+					style={`${modalopen ? "opacity-100 animate-fade z-20" : "opacity-0 z-0 hidden "}`}
 					modalopen={modalopen}
 					setModalOpen={setModalOpen}
 				/>

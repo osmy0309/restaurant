@@ -24,5 +24,21 @@ export default {
 			},
 		},
 	},
-	plugins: [require("tailwindcss-animated")],
+	plugins: [
+		function ({ addUtilities }) {
+			addUtilities(
+				{
+					".scrollbar-hide": {
+						"scrollbar-width": "none" /* Firefox */,
+						"-ms-overflow-style": "none" /* IE and Edge */,
+					},
+					".scrollbar-hide::-webkit-scrollbar": {
+						display: "none" /* Safari and Chrome */,
+					},
+				},
+				["responsive"]
+			);
+		},
+		require("tailwindcss-animated"),
+	],
 };

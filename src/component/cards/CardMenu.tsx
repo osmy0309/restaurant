@@ -9,10 +9,10 @@ interface CardMenuProps {
 function CardMenu({ image, title, description, price }: CardMenuProps) {
 	return (
 		<div
-			className={`h-auto flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu  cursor-pointer`}
+			className={`h-auto flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-3xl transition-shadow duration-300 border-bordermenu  cursor-pointer`}
 		>
 			<div className="w-[100%] h-[300px] bg-transparent hover:cursor-pointer">
-				<img className="w-[100%] h-full rounded-t-[20px]" src={image || '/images/dish/default.png'} alt={title} />
+				<img className="w-[100%] h-full rounded-t-[20px]" src={image || "/images/dish/default.png"} alt={title} />
 			</div>
 			<div className="flex flex-col p-[36px] bg-white gap-3 font-Roboto rounded-b-[20px]">
 				<div className="text-[18px] font-bold h-[4rem]">{title}</div>

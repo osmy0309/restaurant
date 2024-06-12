@@ -13,7 +13,7 @@ function CardService({ image, title, description, index, length, id }: CardMenuP
 	return (
 		<Link to={`/services/${id}`}>
 			<div
-				className={`h-[35rem] flex flex-col bg-transparent z-10 items-center bg-white  hover:shadow-left-bottom transition-shadow duration-300 rounded-[20px] ${
+				className={`h-[35rem] flex flex-col bg-transparent z-10 items-center bg-white  hover:shadow-3xl transition-shadow duration-300 rounded-[20px] ${
 					length % 3 == 2 && index > length - (length % 3)
 						? "md:ml-[50%] md:w-[100%]"
 						: length % 3 == 1 && index > length - (length % 3)
