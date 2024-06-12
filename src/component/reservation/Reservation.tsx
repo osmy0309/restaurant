@@ -38,7 +38,7 @@ function Reservation(props: ReserveFormProps) {
 						section == 1 ? "" : "animate-fade-right opacity-0 hidden"
 					}`}
 				>
-					<img src="/images/reserve/IvánChefsJusto.png" className="w-[12rem] h-[2rem] hover:cursor-pointer" />
+					<img src="/images/reserve/IvánChefsJusto.png" className="z-10 w-[12rem] h-[2rem] hover:cursor-pointer" />
 					<p className="font-Sail_Regular text-[48px] pb-[3rem] text-center">¿Que deseas reservar?</p>
 					{services.map((data) => (
 						<OptionService name={data.chortName} setValue={setServicesSelected} setSection={setSection} id={data.id} />
