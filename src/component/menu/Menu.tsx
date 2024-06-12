@@ -9,10 +9,13 @@ import { AppDispatch, RootState } from "../../app/store";
 import { loadServiceData } from "../../features/services/servicesSlice";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
 import { logout } from "../../features/auth/authSlice";
+import Reservation from "../reservation/Reservation";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
 	const [espaciosSelected, setEspaciosSelected] = useState(false);
+	const [modalopen, setModalOpen] = useState<boolean>(false);
+
 	const [out, setOut] = useState(false);
 	const location = useLocation();
 	const handleClickServices = () => {
@@ -70,7 +73,7 @@ function Menu() {
 								className="w-[2rem] h-[2rem] md:hidden mr-3 ml-2 hover:cursor-pointer"
 							/>
 							<Link to="/">
-								<img src="/images/menu/IvánChefsJusto.png" className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer" />
+								<img src="/images/menu/icon.png" className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer" />
 							</Link>
 							{/*<p className="font-Roboto">Iván </p> <p className="font-Jaini_Purva"> Chefs Justo </p>*/}
 						</section>
@@ -257,14 +260,24 @@ function Menu() {
 								</div>
 							</Link>
 						)}
-						<Link to="/reserve/table/selection">
-						<div className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]">
+
+						<div
+							onClick={() => setModalOpen(true)}
+							className=" hover:cursor-pointer text-[16px] border border-FF40 rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] w-[10rem]"
+						>
 							<p className=" font-bold">Reserva</p>
 						</div>
-						</Link>
 					</div>
 				</div>
 			}
+
+			{modalopen && (
+				<Reservation
+					style={`${modalopen ? "opacity-100 animate-fade z-20" : "opacity-50 z-0 hidden "}`}
+					modalopen={modalopen}
+					setModalOpen={setModalOpen}
+				/>
+			)}
 		</>
 	);
 }

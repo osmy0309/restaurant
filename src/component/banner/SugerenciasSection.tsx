@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import CardMenu from "../cards/CardMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { loadDishesData } from "../../features/dishes/dishesSlice";
+import { loadChefSuggestionsData } from "../../features/dishes/dishesSlice";
 import { AppDispatch, RootState } from "../../app/store";
 
 function SugerenciasSection() {
 	const dispatch = useDispatch<AppDispatch>();
 	let dishes: any = useSelector((state: RootState) => state.dishes.chefSuggestions);
 	useEffect(() => {
-		dispatch(loadDishesData());
+		dispatch(loadChefSuggestionsData());
 	}, []);
 
 	return (

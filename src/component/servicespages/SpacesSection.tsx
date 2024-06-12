@@ -19,6 +19,7 @@ function ServicesSections({ list }: ServiceSectionProps) {
 							description={list.description}
 							id={list.id}
 							index={0}
+							url={`/space/details/${list.id}`}
 						/>
 					) : (
 						<div className="h-auto text-[40px] font-bold font-Sail_Regular ">No tiene espacios</div>

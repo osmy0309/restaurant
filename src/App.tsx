@@ -14,6 +14,8 @@ import { autoLogin } from "./features/auth/authSlice";
 import BookingsPage from "./pages/bookings";
 import TermsPage from "./pages/terms";
 import ReserveTablePage from "./pages/reserve/ReserveTablePage";
+import SpaceDetailPage from "./pages/spaceDetails";
+import DishDetailPage from "./pages/dishDetails";
 
 function App() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -80,6 +82,20 @@ function App() {
 				<Routes>
 					<>
 						<Route path="/terms" element={<TermsPage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/dish/details/:id" element={<DishDetailPage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/space/details/:id" element={<SpaceDetailPage />} />
 					</>
 				</Routes>
 			</div>

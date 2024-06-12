@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface CardMenuProps {
 	image: string;
 	title: string;
@@ -6,8 +8,9 @@ interface CardMenuProps {
 	id: number;
 }
 
-function CardMenu({ image, title, description, price }: CardMenuProps) {
+function CardMenu({ image, title, description, price,id }: CardMenuProps) {
 	return (
+		<Link to={`/dish/details/${id}`}>
 		<div
 			className={`h-auto flex flex-col rounded-[20px] bg-transparent border  z-10 hover:hover:shadow-left-bottom transition-shadow duration-300 border-bordermenu  cursor-pointer`}
 		>
@@ -23,6 +26,7 @@ function CardMenu({ image, title, description, price }: CardMenuProps) {
 				</div>
 			</div>
 		</div>
+		</Link>
 	);
 }
 

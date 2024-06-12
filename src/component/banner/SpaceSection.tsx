@@ -12,17 +12,18 @@ function SpaceSection() {
 				</div>
 
 				<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[10%] pt-5  gap-[1rem] pb-[1rem]">
-					{spaces.length > 0 && spaces.map((data) => (
-						<CardSpace
-							key={`home-space-${data.id}`} // Add a unique key for each CardMenu component
-							image={data.coverImage}
-							title={data.chortName}
-							description={data.largeName}
-							id={data.id}
-							category={data.category}
-							networks={data.networks}
-						/>
-					))}
+					{spaces.length > 0 &&
+						spaces.map((data) => (
+							<CardSpace
+								key={`home-space-${data.id}`} // Add a unique key for each CardMenu component
+								image={data.coverImage}
+								title={data.chortName}
+								description={data.largeName}
+								id={data.id}
+								category={data.category}
+								networks={data.networks}
+							/>
+						))}
 				</div>
 			</div>
 		</>
