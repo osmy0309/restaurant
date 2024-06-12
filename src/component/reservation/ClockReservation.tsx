@@ -59,7 +59,7 @@ function ClockReservation(props: ClockProps) {
 							className={`${props.hour == 1 ? "opacity-[50%]" : "hover:cursor-pointer"}`}
 							onClick={() => {
 								if (props.hour > 1) {
-									setHour(props.hour - 1);
+									props.setHour(props.hour - 1);
 								}
 							}}
 						>
