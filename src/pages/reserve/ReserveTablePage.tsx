@@ -1,5 +1,4 @@
 import ContainerLayout from "../../component/layout/containerLayout";
-import ContactSection from "../../component/banner/ContactSection";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ReserveForm from "../../component/form/ReserveForm";

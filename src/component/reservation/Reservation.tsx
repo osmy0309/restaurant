@@ -16,11 +16,15 @@ interface ReserveFormProps {
 function Reservation(props: ReserveFormProps) {
 	let services = useSelector((state: RootState) => state.services.data);
 	console.log("Servicios en Reservacion", services);
+
 	const [section, setSection] = useState<number>(1);
 	const [people, setPeople] = useState<number>(1);
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
 	const [am_pm, setAm_Pm] = useState<number>(0);
+
+	//const [section, setSection] = useState<number>(1);
+
 	const [serviceselect, setServicesSelected] = useState<number | undefined>(undefined);
 	useEffect(() => {
 		console.log("cambio", serviceselect);

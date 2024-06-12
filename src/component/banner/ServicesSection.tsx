@@ -4,7 +4,6 @@ import { RootState } from "../../app/store";
 
 function ServicesSection() {
 	let services = useSelector((state: RootState) => state.services.data);
-	let spaces = useSelector((state: RootState) => state.spaces.data);
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center bg-white pt-[5rem] pb-[3rem] z-10">

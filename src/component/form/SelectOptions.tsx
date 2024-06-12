@@ -36,7 +36,7 @@ export default function SelectOptions(props: SelectOptionsProps) {
 				onClick={() => !visiblelabel && setVisibleLabel(true)}
 			>
 				{
-					props?.options.length > 0 && props.options.map((o,i)=>(
+					props?.options.length > 0 && props.options.map((_,i)=>(
 						<option value={`value-${1}`}>{`Opcion ${i}`}</option>
 					))
 				}

@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
 import SelectOptions from "./SelectOptions";
-import TimePicker from "./TimePicker";
 import CalendarForm from "./Calendar";
 import TimeForm from "./TimeForm";
 
@@ -23,11 +22,11 @@ function ReserveForm(props: ReserveFormProps) {
 	const onSubmit = async (ev: FormEvent<HTMLFormElement>) => {
 		ev.preventDefault();
 	};
-	const [loading, setLoading] = useState<boolean>(false);
+	const [loading, ] = useState<boolean>(false);
 	const [location, setlocation] = useState<string>("");
 	const [pax, setPax] = useState<number>(0);
-	const [date, setDate] = useState<string>("");
-	const [time, setTime] = useState<string>("");
+	//const [date, setDate] = useState<string>("");
+	//const [time, setTime] = useState<string>("");
 
 	const [fullName, setFullName] = useState<string>("");
 	const [dni, setDni] = useState<string>("");
@@ -61,7 +60,6 @@ function ReserveForm(props: ReserveFormProps) {
 							value={props?.spaceId || ""}
 							onChange={(value) => setlocation(value)}
 						/>
-						<TimePicker />
 						<TextField
 							required
 							name="number"

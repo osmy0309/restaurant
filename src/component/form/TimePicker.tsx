@@ -12,10 +12,11 @@ interface SelectOptionsProps {
 	required?: boolean;
 }
 
-export default function TimePicker() {
+export default function TimePicker(props:SelectOptionsProps) {
 	const [validationErrors, _] = useState([]);
-	const [visiblelabel, setVisibleLabel] = useState(false);
-
+	const [visiblelabel, ] = useState(false);
+	console.log(props);
+	
 	
 	return (
 		<label className=" text-accent-color flex flex-col gap-1 w-full">

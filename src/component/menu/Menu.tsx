@@ -73,7 +73,7 @@ function Menu() {
 								className="w-[2rem] h-[2rem] md:hidden mr-3 ml-2 hover:cursor-pointer"
 							/>
 							<Link to="/">
-								<img src="/images/menu/IvánChefsJusto.png" className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer" />
+								<img src="/images/menu/icon.png" className="w-[12rem] h-[2rem] mr-[12rem] hover:cursor-pointer" />
 							</Link>
 							{/*<p className="font-Roboto">Iván </p> <p className="font-Jaini_Purva"> Chefs Justo </p>*/}
 						</section>
