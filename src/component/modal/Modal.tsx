@@ -18,8 +18,11 @@ export default function Modal(props: ModalProps) {
 			<div
 				className={`${props.style}  will-change-transform bg-white max-h-[95%] z-50 scrollbar-hide shadow-lg w-[30%] h-auto overflow-auto modal-component fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  min-w-[10%]  py-4 px-4 md:px-10 rounded-[20px] `}
 			>
-				<header className="h-[50%] max-h-[60%] z-20 w-full flex flex-col pb-4  top-0 sticky">
-					<button onClick={props.onCloseModal} className="z-20 absolute top-[-5px] md:-right-6 right-6  font-Roboto px-3  rounded-full  bg-white">
+				<header className="h-[50%] max-h-[60%] z-20 w-full flex flex-col pb-4  top-0 sticky ">
+					<button
+						onClick={props.onCloseModal}
+						className="z-20 absolute top-[-5px] h-[45px] md:-right-6 right-6  font-Roboto px-3  rounded-full    bg-transparent"
+					>
 						<img src="/images/reserve/close.png" className="z-10 w-[20px] h-[20px] hover:cursor-pointer " />
 					</button>
 				</header>
