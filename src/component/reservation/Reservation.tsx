@@ -31,6 +31,15 @@ function Reservation(props: ReserveFormProps) {
 	useEffect(() => {
 		console.log("cambio", serviceselect);
 	}, [props.modalopen]);
+
+	useEffect(() => {
+		if (section == 1) {
+			setDate(new Date());
+			setPeople(1);
+			setHour(1);
+			setMinutes(0);
+		}
+	}, [section]);
 	return (
 		<>
 			{}
