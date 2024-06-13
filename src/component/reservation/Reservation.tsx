@@ -16,14 +16,16 @@ interface ReserveFormProps {
 function Reservation(props: ReserveFormProps) {
 	let services = useSelector((state: RootState) => state.services.data);
 	console.log("Servicios en Reservacion", services);
-
+	const formattedMinutes = (minutes: number) => {
+		return minutes < 10 ? `0${minutes}` : minutes.toString();
+	};
 	const [section, setSection] = useState<number>(1);
 	const [people, setPeople] = useState<number>(1);
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
 	const [am_pm, setAm_Pm] = useState<number>(0);
-
-	//const [section, setSection] = useState<number>(1);
+	const [date, setDate] = useState(new Date());
+	const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
 	const [serviceselect, setServicesSelected] = useState<number | undefined>(undefined);
 	useEffect(() => {
@@ -40,6 +42,7 @@ function Reservation(props: ReserveFormProps) {
 				>
 					<img src="/images/reserve/IvánChefsJusto.png" className="z-10 w-[12rem] h-[2rem] hover:cursor-pointer" />
 					<p className="font-Sail_Regular text-[48px] pb-[3rem] text-center">¿Que deseas reservar?</p>
+					<OptionService name={"Una mesa"} setValue={setServicesSelected} setSection={setSection} id={0} />
 					{services.map((data) => (
 						<OptionService name={data.chortName} setValue={setServicesSelected} setSection={setSection} id={data.id} />
 					))}
@@ -56,11 +59,76 @@ function Reservation(props: ReserveFormProps) {
 
 					<div className="flex flex-col !justify-start !items-start w-full ">
 						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona la fecha de reserva</p>
-						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full px-[5rem]">
+						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto px-[5rem]">
 							<CalendarForm />
 						</div>
 					</div>
 					<ClockReservation hour={hour} minutes={minutes} setHour={setHour} setMinutes={setMinutes} am_pm={am_pm} setAm_Pm={setAm_Pm} />
+					<div className="flex gap-5 items-start justify-start w-full pt-3">
+						<button
+							onClick={() => setSection(1)}
+							className=" hover:cursor-pointer text-[16px] border font-Roboto_Bold border-black rounded-[8px] px-5 py-3 flex items-center justify-center text-center  w-[10rem]"
+						>
+							Atras
+						</button>
+						<button
+							onClick={() => setSection(3)}
+							className=" w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] hover:bg-[#e4743c]"
+						>
+							Continuar
+						</button>
+					</div>
+				</div>
+
+				<div
+					className={`flex flex-col gap-[20px] w-full items-center justify-center bg-white  pb-[3rem]  ${
+						section == 3 ? "animate-fade-left opacity-100" : "animate-fade-right opacity-0 hidden"
+					}`}
+				>
+					<img src="/images/reserve/IvánChefsJusto.png" className="w-[12rem] h-[2rem] hover:cursor-pointer" />
+					<p className="font-Sail_Regular text-[48px]  text-center">Detalles de la reserva</p>
+					<div className="flex gap-8 w-full p-1">
+						<section className="flex flex-col gap-1">
+							<img src="/images/reserve/calendar.png" className=" w-[22px] h-[20px] hover:cursor-pointer" />
+							<p className="font-Roboto text-[#888888] text-[18px]">Fecha de reserva</p>
+							<p className="font-Roboto_Bold text-[#1F0B01] text-[20px]">
+								{
+									// @ts-ignore
+									new Intl.DateTimeFormat("es-ES", options).format(date)
+								}
+							</p>
+						</section>
+						<section className="flex flex-col gap-1">
+							<img src="/images/reserve/clock.png" className="w-[22px] h-[20px] hover:cursor-pointer" />
+							<p className="font-Roboto text-[#888888] text-[18px]">Hora</p>
+							<section className="gap-1 font-Roboto_Bold flex text-[#1F0B01] text-[20px]">
+								<p>{formattedMinutes(hour)}</p>
+								<p>:</p>
+								<p>{formattedMinutes(minutes)}</p>
+								<p>{am_pm == 0 ? "AM" : "PM"}</p>
+							</section>
+						</section>
+					</div>
+					<div className="flex gap-8 w-full p-1">
+						<section className="flex flex-col gap-1">
+							<img src="/images/reserve/user.png" className=" w-[22px] h-[20px] hover:cursor-pointer" />
+							<p className="font-Roboto text-[#888888] text-[18px]">Personas</p>
+							<p className="font-Roboto_Bold text-[#1F0B01] text-[20px]">{people}</p>
+						</section>
+					</div>
+
+					<div className="flex gap-5 items-start justify-start w-full pt-3">
+						<button
+							onClick={() => setSection(2)}
+							className="h-[55px] hover:cursor-pointer text-[16px] border font-Roboto_Bold border-black rounded-[8px] px-5 py-3 flex items-center justify-center text-center  w-[10rem]"
+						>
+							Atras
+						</button>
+						<button className="h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] hover:bg-[#e4743c]">
+							<img src="/images/menu/solar_user-broken.png" className="w-[45px] h-[35px] hover:cursor-pointer" />
+							Añadir al carrito
+						</button>
+					</div>
 				</div>
 			</Modal>
 		</>
