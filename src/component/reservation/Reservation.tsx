@@ -6,6 +6,7 @@ import { RootState } from "../../app/store";
 import Modal from "../modal/Modal";
 import OptionService from "./OpcionServices";
 import CalendarForm from "../form/Calendar";
+import Select from "../form/Select";
 import TableReservation from "./TableNumberReservation";
 import ClockReservation from "./ClockReservation";
 interface ReserveFormProps {
@@ -13,13 +14,16 @@ interface ReserveFormProps {
 	modalopen: any;
 	style: any;
 }
+interface OptionProps {
+	value: string;
+	option: string;
+}
 function Reservation(props: ReserveFormProps) {
 	let services = useSelector((state: RootState) => state.services.data);
-	console.log("Servicios en Reservacion", services);
-	const formattedMinutes = (minutes: number) => {
-		return minutes < 10 ? `0${minutes}` : minutes.toString();
-	};
+	let spaces = useSelector((state: RootState) => state.spaces.data);
+	const [option, setOption] = useState<OptionProps[]>([]);
 	const [section, setSection] = useState<number>(1);
+	const [selectSpace, setSelectSpace] = useState();
 	const [people, setPeople] = useState<number>(1);
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
@@ -28,6 +32,21 @@ function Reservation(props: ReserveFormProps) {
 	const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
 	const [serviceselect, setServicesSelected] = useState<number | undefined>(undefined);
+	console.log("Servicios en Reservacion", spaces);
+	const formattedMinutes = (minutes: number) => {
+		return minutes < 10 ? `0${minutes}` : minutes.toString();
+	};
+	useEffect(() => {
+		const mappedOptions = spaces.map((data: any) => {
+			return {
+				value: data.id,
+				option: data.chortName,
+			};
+		});
+
+		setOption(mappedOptions);
+	}, []);
+
 	useEffect(() => {
 		console.log("cambio", serviceselect);
 	}, [props.modalopen]);
@@ -70,6 +89,12 @@ function Reservation(props: ReserveFormProps) {
 						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona la fecha de reserva</p>
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto px-[5rem]">
 							<CalendarForm />
+						</div>
+					</div>
+					<div className="flex flex-col !justify-start !items-start w-full ">
+						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona el espacio</p>
+						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto ">
+							<Select styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto" options={option} onChange={() => setSelectSpace} />
 						</div>
 					</div>
 					<ClockReservation hour={hour} minutes={minutes} setHour={setHour} setMinutes={setMinutes} am_pm={am_pm} setAm_Pm={setAm_Pm} />
