@@ -40,9 +40,7 @@ function BannerServices({
 							</div>
 						</div>
 						<div className="w-[30%] max-h-[600px] h-[600px] flex flex-col">
-							<div className="h-[300px] max-h-[300px] flex flex-col pt-[2rem]">
-								{coments && coments.map((data: any) => <Comments data={data} />)}
-							</div>
+							<div className="h-[300px] max-h-[300px] flex flex-col pt-[2rem]">{coments && coments.map((data: any) => <Comments data={data} />)}</div>
 							<div className="h-[300px] max-h-[300px] flex flex-col pt-[2rem]">
 								{networks && networks.map((data: any) => <Networks data={data} />)}
 							</div>

@@ -16,6 +16,7 @@ import TermsPage from "./pages/terms";
 import ReserveTablePage from "./pages/reserve/ReserveTablePage";
 import SpaceDetailPage from "./pages/spaceDetails";
 import DishDetailPage from "./pages/dishDetails";
+import DataPerfilPage from "./pages/perfil";
 
 function App() {
 	const dispatch = useDispatch<AppDispatch>();
@@ -68,6 +69,13 @@ function App() {
 				<Routes>
 					<>
 						<Route path="/reserve/table/:spaceId" element={<ReserveTablePage />} />
+					</>
+				</Routes>
+			</div>
+			<div className="overflow-auto">
+				<Routes>
+					<>
+						<Route path="/perfil" element={<DataPerfilPage />} />
 					</>
 				</Routes>
 			</div>
