@@ -159,9 +159,15 @@ function Reservation(props: ReserveFormProps) {
 					</div>
 
 					<div className="flex flex-col !justify-start !items-start w-full ">
-						<p className="font-Roboto pb-2 text-[#1F0B01]">Nombre</p>
+						<div className="flex gap-1">
+							{" "}
+							<p className="font-Roboto pb-2 text-[#1F0B01]">Nombre</p>
+							<span className="text-[#ff0000]">*</span>
+						</div>
+
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-[60px] ">
 							<TextField
+								required
 								styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
 								value={name}
 								type="text"
@@ -170,16 +176,31 @@ function Reservation(props: ReserveFormProps) {
 						</div>
 					</div>
 					<div className="flex flex-col !justify-start !items-start w-full ">
-						<p className="font-Roboto pb-2 text-[#1F0B01]">Carnet de identidad</p>
+						<div className="flex gap-1">
+							{" "}
+							<p className="font-Roboto pb-2 text-[#1F0B01]">Carnet de identidad</p>
+							<span className="text-[#ff0000]">*</span>
+						</div>
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-[60px] ">
-							<TextField styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto" value={ci} type="text" onChange={() => setCI} />
+							<TextField
+								styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
+								required
+								value={ci}
+								type="text"
+								onChange={() => setCI}
+							/>
 						</div>
 					</div>
 
 					<div className="flex flex-col !justify-start !items-start w-full ">
-						<p className="font-Roboto pb-2 text-[#1F0B01]">Numero de teléfono</p>
+						<div className="flex gap-1 ">
+							{" "}
+							<p className="font-Roboto pb-2 text-[#1F0B01]">Numero de teléfono</p>
+							<span className="text-[#ff0000]">*</span>
+						</div>
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-[60px] ">
 							<TextField
+								required
 								styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
 								value={phone}
 								type="number"
