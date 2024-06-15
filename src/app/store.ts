@@ -10,6 +10,7 @@ import dishesSlice from "../features/dishes/dishesSlice";
 import spacesSlice from "../features/spaces/spacesSlice";
 import authSlice from "../features/auth/authSlice";
 import termsSlice from "../features/terms/termsSlice";
+import bookingsSlice from "../features/bookings/bookingsSlice";
 
 const rootReducer = combineReducers({
   auth:authSlice,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   dishes:dishesSlice,
   spaces:spacesSlice,
   terms:termsSlice,
+  bookings:bookingsSlice,
 });
 
 

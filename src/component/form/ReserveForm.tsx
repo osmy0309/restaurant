@@ -63,8 +63,8 @@ function ReserveForm(props: ReserveFormProps) {
 						<TextField
 							required
 							name="number"
-							placeholder="Cantidad de personas"
-							label="Cantidad de personas"
+							placeholder="Cantidad de mesas"
+							label="Cantidad de mesas"
 							type="text"
 							value={pax}
 							onChange={(value) => setPax(parseInt(value))}

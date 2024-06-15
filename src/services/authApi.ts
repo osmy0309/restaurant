@@ -45,3 +45,14 @@ export const registerApi = async (credentials: LoginDTO) => {
     console.error(error)
   }
 };
+
+export const changePasswordApi = async (credentials: LoginDTO) => {  
+  try {
+    return await Axios.post(
+      `/api/perfil/cambiar_clave`,credentials
+    );
+  } catch (error) {
+    console.error(error)
+  }
+};
+

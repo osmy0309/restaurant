@@ -7,11 +7,13 @@ import { notification } from "antd";
 export interface AuthState {
   data: authDTO | null;
   loading: boolean;
+  openReserve:boolean;
 }
 
 const initialState: AuthState = {
   data: null,
   loading: false,
+  openReserve:false,
 };
 
 export const authSlice = createSlice({
@@ -34,6 +36,9 @@ export const authSlice = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
+    setOpenReserve:(state,action) =>{
+      state.openReserve = action.payload
+    }
   },
 });
 
@@ -42,6 +47,7 @@ export const {
   setLoading,
   login,
   logout,
+  setOpenReserve
 } = authSlice.actions;
 export const selectAuth = (state: any) => state.auth.data;
 

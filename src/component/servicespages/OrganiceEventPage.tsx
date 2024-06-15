@@ -17,7 +17,7 @@ function ServicesSection() {
 								key={`home-service-${data.id}`} // Add a unique key for each CardMenu component
 								image={data.image}
 								title={data.name}
-								description={data.description}
+								description={data.largeName}
 								id={data.id}
 								index={index}
 							/>
