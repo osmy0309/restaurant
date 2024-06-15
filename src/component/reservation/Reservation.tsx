@@ -11,6 +11,7 @@ import TextField from "../form/TextFielReservation";
 import TextTarea from "../form/TextTarea";
 import TableReservation from "./TableNumberReservation";
 import ClockReservation from "./ClockReservation";
+import { ReserveDTO } from "../../shared/dtos/bookingDTO";
 interface ReserveFormProps {
 	setModalOpen: any;
 	modalopen: boolean;
@@ -23,9 +24,11 @@ interface OptionProps {
 function Reservation(props: ReserveFormProps) {
 	let services = useSelector((state: RootState) => state.services.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
+	let auth = useSelector((state: RootState) => state.auth.data);
+	
 	const [option, setOption] = useState<OptionProps[]>([]);
 	const [section, setSection] = useState<number>(2);
-	const [selectSpace, setSelectSpace] = useState();
+	const [selectSpace, setSelectSpace] = useState<string>();
 	const [people, setPeople] = useState<number>(1);
 	const [name, setName] = useState<string>();
 	const [description, setDescription] = useState<string>();
@@ -65,6 +68,22 @@ function Reservation(props: ReserveFormProps) {
 			setMinutes(0);
 		}
 	}, [section]);
+
+	const handleReserve = () => {
+		const data:ReserveDTO = {
+			email: auth?.email || "rogeidis9007@gmail.com",
+			date:date.toDateString(),
+			pax: people,
+			description: description || "",
+			space:selectSpace || "",
+			fullName: name || "",
+			dni: ci || "",
+			cellphone: phone?.toString() || ""
+		}
+		console.log("Reservar :",data);
+		
+	}
+
 	return (
 		<>
 			{}
@@ -229,7 +248,7 @@ function Reservation(props: ReserveFormProps) {
 						>
 							Atras
 						</button>
-						<button className="h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] hover:bg-[#e4743c]">
+						<button onClick={handleReserve} className="h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] hover:bg-[#e4743c]">
 							{/*<img src="/images/menu/solar_user-broken.png" className="w-[45px] h-[35px] hover:cursor-pointer" />*/}
 							Reservar
 						</button>
