@@ -14,7 +14,6 @@ function CardSpaceDetail({ space }: CardSpaceDetailProps) {
 				<div className=" w-[50%] flex flex-col p-[36px] bg-white gap-3 rounded-[8px]">
 					<div className="auto text-[40px] font-bold font-Roboto ">{space.chortName}</div>
 					<div className="h-[50%] max-h-[50%] overflow-none text-[16px] font-Roboto" dangerouslySetInnerHTML={{ __html: space.description }} />
-					
 				</div>
 			</div>
 		</>

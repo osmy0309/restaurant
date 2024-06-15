@@ -19,7 +19,7 @@ function CardServiceMenu({ image, title, description, id }: CardMenuProps) {
 					<div className="w-[70%] flex flex-col gap-1 font-Roboto rounded-b-[20px] pl-3">
 						<div className="text-[24px] font-normal font-Sail_Regular text-[#1F0B01]">{title}</div>
 						<div
-							className="text-[13px] font-Roboto text-[#888888] text-justify pb-4 max-h-[100px] overflow-auto !p-2"
+							className="text-[13px] font-Roboto text-[#888888] text-justify pb-4 max-h-[80px] overflow-hidden !p-2"
 							style={{ scrollbarWidth: "thin", scrollbarColor: "#888888 #f4f4f4" }}
 							dangerouslySetInnerHTML={{ __html: description }}
 						/>

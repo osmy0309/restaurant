@@ -30,10 +30,10 @@ function Reservation(props: ReserveFormProps) {
 	const [section, setSection] = useState<number>(2);
 	const [selectSpace, setSelectSpace] = useState<string>();
 	const [people, setPeople] = useState<number>(1);
-	const [name, setName] = useState<string>("");
-	const [description, setDescription] = useState<string>("");
-	const [ci, setCI] = useState<string>("");
-	const [phone, setPhone] = useState<string>();
+	const [name, setName] = useState<string>();
+	const [description, setDescription] = useState<string>();
+	const [ci, setCI] = useState<string>();
+	const [phone, setPhone] = useState<number>();
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
 	const [am_pm, setAm_Pm] = useState<number>(0);
@@ -74,11 +74,11 @@ function Reservation(props: ReserveFormProps) {
 			email: auth?.email || "rogeidis9007@gmail.com",
 			date:date.toDateString(),
 			pax: people,
-			description: description,
+			description: description || "",
 			space:selectSpace || "",
-			fullName: name,
-			dni: ci,
-			cellphone: phone || ""
+			fullName: name || "",
+			dni: ci || "",
+			cellphone: phone?.toString() || ""
 		}
 		console.log("Reservar :",data);
 		
