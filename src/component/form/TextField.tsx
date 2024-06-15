@@ -2,12 +2,13 @@ import { useState } from "react";
 import "./textfield.css";
 interface TextInputProps {
 	placeholder?: string;
-	value: string | number;
+	value: string | number | undefined;
 	name?: string;
 	onChange: (value: string) => void;
 	type: "text" | "email" | "password";
 	label?: string;
 	styleClass?: string;
+	styleClassLabel?: string;
 	disabled?: boolean;
 	required?: boolean;
 }
@@ -22,7 +23,7 @@ export default function TextField(props: TextInputProps) {
 
 	return (
 		<label className=" text-accent-color flex flex-col gap-1 w-full">
-			<div className={`${!visiblelabel ? "hidden" : ""} animate-fade-up animate-ease-linear `}>{props.label}</div>
+			<div className={`${!visiblelabel ? "hidden" : ""} ${props.styleClassLabel} animate-fade-up animate-ease-linear `}>{props.label}</div>
 			{props.required && <span className="text-[#ff0000]">*</span>}
 			<input
 				//required={props.required}

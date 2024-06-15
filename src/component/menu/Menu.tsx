@@ -121,7 +121,7 @@ function Menu() {
 								<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 								<div
 									//onMouseOut={() => setServicesSelected(false)}
-									className="max-h-[40rem] overflow-auto fixed  inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] xl:!h-auto 2xl:!h-[40rem] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+									className="max-h-[600px] overflow-auto fixed  inset-0 top-[70px] flex items-center !w-[100%] !h-[450px] xl:!h-[450px] 2xl:!h-[500px] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 									style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 								>
 									<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center px-[2rem]  gap-[1rem]">
@@ -162,10 +162,10 @@ function Menu() {
 								<div className="absolute w-5  border-[10px] border-[#FFFFFF] border-solid border-t-transparent border-r-transparent border-l-transparent -bottom-[78%] left-[30%]"></div>{" "}
 								<div
 									//onMouseOut={() => setEspaciosSelected(false)}
-									className="fixed inset-0 top-[70px] flex items-center !w-[100%] !h-[55%] xl:!h-[86%] 2xl:!h-[65%] justify-center bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
+									className="fixed inset-0 top-[70px] flex  !w-[100%] !h-[55%] xl:!h-[65%] 2xl:!h-[55%]  bg-[#FFFFFF] text-black border border-FF40 rounded-[1px]"
 									style={{ boxShadow: "2px 2px 4px rgba(0, 0, 0, 0.2)", width: "80vw", height: "80vh" }}
 								>
-									<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center xl:px-[10rem] 2xl:px-[20rem] pt-8 pb-8  gap-5 ">
+									<div className="grid grid-cols-1 md:grid-cols-3 items-center justify-center xl:px-[5rem] 2xl:px-[20rem]  pb-8  gap-[1rem] ">
 										{spaces.length > 0 &&
 											spaces.map((data) => (
 												<CardSpaceMenu
