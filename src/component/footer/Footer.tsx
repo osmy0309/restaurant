@@ -18,7 +18,7 @@ function Footer() {
 					<article className="text-wrap h-auto">
 						<h3 className="text-[18px] font-bold h-[2rem] text-[#E38A5D]">Reserva</h3>
 						{setting?.footer?.booking?.map((b, i) => (
-							<div key={`footer-${i}`} className="hover:cursor-pointer hover:text-[20px] hover:text-[#fff]">
+							<div key={`footer-reserve-${i}`} className="hover:cursor-pointer hover:text-[20px] hover:text-[#fff]">
 								<a className="text-[14px] text-[#888888] hover:text-[#fff]" href={b.url}>
 									{b.name}
 								</a>
@@ -52,7 +52,7 @@ function Footer() {
 								<p className="text-[14px] text-[#fff] font-bold pb-[0.3rem]">{`${f.name}`}</p>
 								<div className="grid grid-cols-3 justify-start">
 									{f.networks.map((n, j) => (
-										<Link to={n.value || "/"} target="_blank" rel="noopener noreferrer">
+										<Link key={`footer-follow-network-${i}-${j}`} to={n.value || "/"} target="_blank" rel="noopener noreferrer">
 											<img
 												key={`follow-image-${i}-${j}`}
 												className="h-[20px] hover:cursor-pointer  mb-2"

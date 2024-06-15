@@ -41,7 +41,7 @@ export const getAllBookingsApi = async (params:paramsGetAll) => {
           cantidadMesa:params.pax,
           email:params.email,
           fechaReservacion:params.date,
-          descripcion:params.description
+          descripcion:params.description,
       }
      const response = await Axios.post(
        `/service/reservar/mesa/crear`,data

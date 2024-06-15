@@ -31,7 +31,7 @@ const SpaceDetailPage = () => {
 			<ContainerLayout banner={false} key={`page-dish-details-${id}`}>
 			<div className="flex flex-col items-center justify-center bg-[#F1F1F1] pt-10 mt-20 z-10 p-10">
 				<div className="w-[70%] bg-transparent">
-				{space && <CardSpaceDetail space={space}/>}
+				{space && <CardSpaceDetail key={`card-detail-${id}`} space={space}/>}
 				</div>
 			</div>				
 				<SugerenciasSection />		

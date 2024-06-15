@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { SocialNetworkData } from "../shared/dtos/settingsDTO";
 
 interface IconNetworkProps {
@@ -6,18 +7,16 @@ interface IconNetworkProps {
 }
 
 const IconNetwork = ({ network, handleSocialLinkClick }: IconNetworkProps) => {
-	console.log("Valores en las redes :", network);
-
 	return (
 		<>
-			<a key={network.name} className="z-50" href={network.value} target="_blank" onClick={handleSocialLinkClick} rel="noopener noreferrer">
+			<Link key={network.name} className="z-50" to={network.value || "/"} target="_blank" onClick={handleSocialLinkClick} rel="noopener noreferrer">
 				{
 					<img
 						className="h-[30px] hover:cursor-pointer hover:h-[40px] hover:transition-shadow duration-300"
 						src={`/images/card/${network.name.toLowerCase()}.png`}
 					/>
 				}
-			</a>
+			</Link>
 		</>
 	);
 };

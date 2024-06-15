@@ -12,6 +12,7 @@ import TextTarea from "../form/TextTarea";
 import TableReservation from "./TableNumberReservation";
 import ClockReservation from "./ClockReservation";
 import { ReserveDTO } from "../../shared/dtos/bookingDTO";
+import dayjs from "dayjs";
 interface ReserveFormProps {
 	setModalOpen: any;
 	modalopen: boolean;
@@ -22,6 +23,12 @@ interface OptionProps {
 	option: string;
 }
 function Reservation(props: ReserveFormProps) {
+
+	
+const currentDate = dayjs();
+const formattedDate = currentDate.format('YYYY-MM-DD');
+
+
 	let services = useSelector((state: RootState) => state.services.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
 	let auth = useSelector((state: RootState) => state.auth.data);
@@ -33,15 +40,27 @@ function Reservation(props: ReserveFormProps) {
 	const [name, setName] = useState<string>();
 	const [description, setDescription] = useState<string>();
 	const [ci, setCI] = useState<string>();
-	const [phone, setPhone] = useState<number>();
+	const [phone, setPhone] = useState<string>();
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
 	const [am_pm, setAm_Pm] = useState<number>(0);
-	const [date, setDate] = useState(new Date());
+	const [date, setDate] = useState<string>(formattedDate);
 	const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
 
 	const [serviceselect, setServicesSelected] = useState<number | undefined>(undefined);
-	console.log("Servicios en Reservacion", spaces);
+
+	const [isValid,setIsValid] = useState<boolean>(false);
+
+	useEffect(()=>{
+		console.log("Validar :",name,description,phone,ci);
+		
+		if(name && phone && phone?.length >= 8 && ci) 
+		{
+			setIsValid(true) 
+		}	
+		else setIsValid(false);
+	},[name,phone,ci])
+
 	const formattedMinutes = (minutes: number) => {
 		return minutes < 10 ? `0${minutes}` : minutes.toString();
 	};
@@ -56,13 +75,13 @@ function Reservation(props: ReserveFormProps) {
 		setOption(mappedOptions);
 	}, []);
 
-	useEffect(() => {
-		console.log("cambio", serviceselect);
-	}, [props.modalopen]);
+	useEffect(()=>{
+		spaces?.length >0 && setSelectSpace(spaces[0]?.id.toString());
+	},[spaces])
 
 	useEffect(() => {
 		if (section == 1) {
-			setDate(new Date());
+			setDate(currentDate.format("YYYY-MM-DD"));
 			setPeople(1);
 			setHour(1);
 			setMinutes(0);
@@ -72,13 +91,13 @@ function Reservation(props: ReserveFormProps) {
 	const handleReserve = () => {
 		const data:ReserveDTO = {
 			email: auth?.email || "rogeidis9007@gmail.com",
-			date:date.toDateString(),
+			date:`${date} ${am_pm == 0 ? `${hour}:${formattedMinutes(minutes)}` : `${hour+12}:${formattedMinutes(minutes)}`}`,
 			pax: people,
 			description: description || "",
-			space:selectSpace || "",
+			space:selectSpace?.toString() || "",
 			fullName: name || "",
 			dni: ci || "",
-			cellphone: phone?.toString() || ""
+			cellphone: phone?.toString() || "",
 		}
 		console.log("Reservar :",data);
 		
@@ -95,7 +114,7 @@ function Reservation(props: ReserveFormProps) {
 				>
 					<img src="/images/reserve/IvánChefsJusto.png" className="z-10 w-[12rem] h-[2rem] hover:cursor-pointer" />
 					<p className="font-Sail_Regular text-[48px] pb-[3rem] text-center">¿Que deseas reservar?</p>
-					<OptionService name={"Una mesa"} setValue={setServicesSelected} setSection={setSection} id={0} />
+					<OptionService name={"Una mesa"} setValue={setServicesSelected} setSection={setSection} id={0}/>
 					{services.map((data) => (
 						<OptionService name={data.chortName} setValue={setServicesSelected} setSection={setSection} id={data.id} />
 					))}
@@ -113,13 +132,13 @@ function Reservation(props: ReserveFormProps) {
 					<div className="flex flex-col !justify-start !items-start w-full ">
 						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona la fecha de reserva</p>
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto px-[5rem]">
-							<CalendarForm />
+							<CalendarForm setValue={setDate}/>
 						</div>
 					</div>
 					<div className="flex flex-col !justify-start !items-start w-full ">
 						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona el espacio</p>
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto ">
-							<Select styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto" options={option} onChange={() => setSelectSpace} />
+							<Select styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto" options={option} onChange={setSelectSpace} />
 						</div>
 					</div>
 					<ClockReservation hour={hour} minutes={minutes} setHour={setHour} setMinutes={setMinutes} am_pm={am_pm} setAm_Pm={setAm_Pm} />
@@ -153,8 +172,9 @@ function Reservation(props: ReserveFormProps) {
 							<p className="font-Roboto text-[#888888] text-[18px]">Fecha de reserva</p>
 							<p className="font-Roboto_Bold text-[#1F0B01] text-[20px]">
 								{
+									date
 									// @ts-ignore
-									new Intl.DateTimeFormat("es-ES", options).format(date)
+									//new Intl.DateTimeFormat("es-ES", options).format(date)
 								}
 							</p>
 						</section>
@@ -190,7 +210,7 @@ function Reservation(props: ReserveFormProps) {
 								styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
 								value={name}
 								type="text"
-								onChange={() => setName}
+								onChange={setName}
 							/>
 						</div>
 					</div>
@@ -206,7 +226,7 @@ function Reservation(props: ReserveFormProps) {
 								required
 								value={ci}
 								type="text"
-								onChange={() => setCI}
+								onChange={setCI}
 							/>
 						</div>
 					</div>
@@ -224,7 +244,7 @@ function Reservation(props: ReserveFormProps) {
 								value={phone}
 								type="number"
 								placeholder="58538091"
-								onChange={() => setPhone}
+								onChange={setPhone}
 							/>
 						</div>
 					</div>
@@ -248,7 +268,7 @@ function Reservation(props: ReserveFormProps) {
 						>
 							Atras
 						</button>
-						<button onClick={handleReserve} className="h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center bg-[#E38A5D] hover:bg-[#e4743c]">
+						<button onClick={handleReserve} disabled={!isValid} className={`h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center ${isValid ? 'bg-[#E38A5D] hover:bg-[#e4743c]' : 'bg-[#808080]'}`}>
 							{/*<img src="/images/menu/solar_user-broken.png" className="w-[45px] h-[35px] hover:cursor-pointer" />*/}
 							Reservar
 						</button>

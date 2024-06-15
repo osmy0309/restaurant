@@ -37,7 +37,7 @@ function CardSpace({ image, title, description, category, id, networks }: CardMe
 				</div>
 
 				<div className="absolute  -bottom-4 z-50 flex p-[36px] gap-[1rem] justify-center items-center">
-					{networks?.length > 0 && networks.map((n) => <IconNetwork network={n} handleSocialLinkClick={handleSocialLinkClick} />)}
+					{networks?.length > 0 && networks.map((n) => <IconNetwork key={`icon-network-${n.name}`} network={n} handleSocialLinkClick={handleSocialLinkClick} />)}
 				</div>
 			</div>
 		</Link>
