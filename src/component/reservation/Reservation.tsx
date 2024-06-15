@@ -13,7 +13,7 @@ import TableReservation from "./TableNumberReservation";
 import ClockReservation from "./ClockReservation";
 interface ReserveFormProps {
 	setModalOpen: any;
-	modalopen: any;
+	modalopen: boolean;
 	style: any;
 }
 interface OptionProps {

@@ -16,7 +16,7 @@ function ServicesSections({ list }: ServiceSectionProps) {
 								key={`service-section-${index}`}
 								image={data.image}
 								title={data.name}
-								description={data.description}
+								description={data.largeName}
 								id={index}
 								index={index}
 							/>

@@ -7,7 +7,7 @@ function TableReservation(props: TableProps) {
 		<>
 			<div className="flex flex-col w-full">
 				<div className="flex flex-col !justify-start !items-start w-full">
-					<p className="font-Roboto pb-2 text-[#1F0B01]">Cantidad de personas</p>
+					<p className="font-Roboto pb-2 text-[#1F0B01]">Cantidad de mesas</p>
 					<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full px-[5rem]">
 						<div
 							className={`${props.people == 1 ? "opacity-[50%]" : "hover:cursor-pointer"}`}

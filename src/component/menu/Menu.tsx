@@ -8,20 +8,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../app/store";
 import { loadServiceData } from "../../features/services/servicesSlice";
 import { loadSpacesData } from "../../features/spaces/spacesSlice";
-import { logout } from "../../features/auth/authSlice";
+import { logout, setOpenReserve } from "../../features/auth/authSlice";
 import Reservation from "../reservation/Reservation";
 
 function Menu() {
 	const [servicesSelected, setServicesSelected] = useState(false);
 	const [espaciosSelected, setEspaciosSelected] = useState(false);
-	const [modalopen, setModalOpen] = useState<boolean>(false);
-
 	const [out, setOut] = useState(false);
 	const location = useLocation();
 	const handleClickServices = () => {
 		setServicesSelected(!servicesSelected);
 	};
-
 	let menuRef = useRef();
 	useEffect(() => {
 		let handler = (e: any) => {
@@ -51,6 +48,7 @@ function Menu() {
 	const dispatch = useDispatch<AppDispatch>();
 	let services = useSelector((state: RootState) => state.services.data);
 	let auth = useSelector((state: RootState) => state.auth.data);
+	const openReserve = useSelector((state: RootState) => state.auth.openReserve);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
 	useEffect(() => {
 		dispatch(loadServiceData());
@@ -61,6 +59,14 @@ function Menu() {
 		dispatch(logout());
 	};
 
+	useEffect(()=>{
+		console.log("Open :",openReserve);
+		
+	},[openReserve])
+	
+	const setModalOpen = (value:boolean) => {
+		dispatch(setOpenReserve(value));
+	}
 	return (
 		<>
 			{
@@ -167,7 +173,7 @@ function Menu() {
 													key={`menu-space-${data.id}`} // Add a unique key for each CardMenu component
 													image={data.coverImage}
 													title={data.chortName}
-													description={data.description}
+													description={data.largeName}
 													id={data.id}
 													category={data.category}
 												/>
@@ -271,10 +277,10 @@ function Menu() {
 				</div>
 			}
 
-			{modalopen && (
+			{openReserve && (
 				<Reservation
-					style={`${modalopen ? "opacity-100 animate-fade z-20" : "opacity-0 z-0 hidden "}`}
-					modalopen={modalopen}
+					style={`${openReserve ? "opacity-100 animate-fade z-20" : "opacity-0 z-0 hidden "}`}
+					modalopen={openReserve}
 					setModalOpen={setModalOpen}
 				/>
 			)}
