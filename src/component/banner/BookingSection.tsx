@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function BookingSection() {
 	return (
-		<div className="pb-[2rem] pt-[5rem]">
+		<div className="pb-[2rem] ">
 			<div className="bg-[url('/images/banner/Banners.png')] bg-cover bg-center w-full !h-[800px] flex gap-5 pl-[10%]">
 				<div className=" flex flex-col p-[5rem]  w-[60%]">
 					<p className="font-Sail_Regular text-[#FED053] text-[96px]">Reserva</p>
@@ -14,9 +14,9 @@ function BookingSection() {
 					</p>
 
 					<Link to="/reserve/table/selection">
-					<div className=" w-[30%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300">
-						<p className="text-white text-[16px] font-bold font-Roboto">Reserva</p>
-					</div>
+						<div className=" w-[30%] rounded-[5px] flex justify-center items-center bg-[#E38A5D] h-[3rem] p-2 px-8 tracking-[5%] leading-[16px]  hover:cursor-pointer hover:bg-[#e4743c] transition-colors duration-300">
+							<p className="text-white text-[16px] font-bold font-Roboto">Reserva</p>
+						</div>
 					</Link>
 				</div>
 				<div className=" w-full flex pl-[5rem] ">
