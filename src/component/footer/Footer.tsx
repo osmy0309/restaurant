@@ -6,7 +6,10 @@ function Footer() {
 	let setting = useSelector((state: RootState) => state.setting.data);
 	return (
 		<>
-			<div className={`bg-bgmenu h-auto absolute  px-[5rem]  py-10 grid grid-cols-2 md:grid-cols-4 gap-5 w-100`}>
+			<div
+				className="h-auto absolute  px-[5rem] bg-cover bg-center  py-10 grid grid-cols-2 md:grid-cols-4 gap-5 w-100"
+				style={{ backgroundImage: `url(${setting.homeImages?.footer})` }}
+			>
 				<div className=" ">
 					<h3 className="text-[18px] font-bold h-[2rem] text-[#E38A5D]">{setting?.footer?.aboutUs?.name}</h3>
 					<div className=" text-[16px] font-Roboto text-[#fff] " dangerouslySetInnerHTML={{ __html: setting?.footer?.aboutUs?.description || "" }} />
@@ -49,13 +52,13 @@ function Footer() {
 								<p className="text-[14px] text-[#fff] font-bold pb-[0.3rem]">{`${f.name}`}</p>
 								<div className="grid grid-cols-3 justify-start">
 									{f.networks.map((n, j) => (
-										<Link to={n.value || "/"}  target="_blank" rel="noopener noreferrer" >
-										<img
-											key={`follow-image-${i}-${j}`}
-											className="h-[20px] hover:cursor-pointer  mb-2"
-											alt="X"
-											src={`/images/card/${n.name == "Facebook" ? "facebookgrim" : n.name == "Instagram" ? "instagramgrim" : "whatsappgrim"}.png`}
-										/>
+										<Link to={n.value || "/"} target="_blank" rel="noopener noreferrer">
+											<img
+												key={`follow-image-${i}-${j}`}
+												className="h-[20px] hover:cursor-pointer  mb-2"
+												alt="X"
+												src={`/images/card/${n.name == "Facebook" ? "facebookgrim" : n.name == "Instagram" ? "instagramgrim" : "whatsappgrim"}.png`}
+											/>
 										</Link>
 									))}
 								</div>
@@ -63,9 +66,9 @@ function Footer() {
 						))}
 					</div>
 				</div>
-				<div className="col-start-2 col-span-2">
+				{/*<div className="col-start-2 col-span-2">
 					<img className="ml-[42%] h-[10rem] hover:cursor-pointer" alt="X" src={`/images/card/footerdown.png`} />
-				</div>
+									</div>*/}
 			</div>
 		</>
 	);
