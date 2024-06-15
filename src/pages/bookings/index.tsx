@@ -32,7 +32,25 @@ const BookingsPage = () => {
 				<div className="flex flex-col items-center justify-center  pt-[5rem]  z-10 bg-[#F1F1F1]">
 					<div className="text-[64px] font-Sail_Regular pb-[3rem]">Mis reservas</div>
 				</div>
-				<div className="!w-[100%] flex flex-col justify-center items-center h-auto bg-[#F1F1F1] pb-[3rem]">
+				<div className="!w-[100%] flex flex-col justify-center items-center h-auto bg-[#F1F1F1] pb-[3rem] gap-5">
+					<ReservationCard
+						date={data.date}
+						description={data.description}
+						id={data.id}
+						image={data.image}
+						persons={data.persons}
+						title={data.title}
+						price={data.price}
+					/>
+					<ReservationCard
+						date={data.date}
+						description={data.description}
+						id={data.id}
+						image={data.image}
+						persons={data.persons}
+						title={data.title}
+						price={data.price}
+					/>
 					<ReservationCard
 						date={data.date}
 						description={data.description}
