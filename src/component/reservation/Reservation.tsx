@@ -214,7 +214,7 @@ function Reservation(props: ReserveFormProps) {
 
 						<TextTarea
 							name="email"
-							styleClass="!border-b-0 flex !justify-center !items-center shadow-3xl p-4 h-[100px] rounded-[12px] w-full  bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
+							styleClass="!border-b-0 flex !justify-center !items-center shadow-3xl p-4 h-[130px] rounded-[12px] w-full  bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
 							value={description}
 							onChange={(value) => setDescription(value)}
 							cols={50}
