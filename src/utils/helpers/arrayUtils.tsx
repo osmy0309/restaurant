@@ -1,3 +1,4 @@
+import { ReserveApiDTO, ReserveDTO } from "../../shared/dtos/bookingDTO";
 import { DishApiDTO, DishDTO } from "../../shared/dtos/dishesDTO";
 import { ServiceApiDTO, ServiceDTO, seccionesApiDTO, sectionsDTO } from "../../shared/dtos/servicesDTO";
 import { SocialNetworkData, dataListgApi } from "../../shared/dtos/settingsDTO";
@@ -116,6 +117,36 @@ const changeNamePropertySpaces = (data: SpaceApiDTO[]):SpaceDTO[] => {
   }))
 };
 
+const changeNamePropertyBookings = (data: ReserveApiDTO[]):ReserveDTO[] => {
+  return data.map(d => ({
+    id: d.id,
+    fullName:d.nombreCompleto,
+    dni:d.dni,
+    cellphone:d.celular,
+    space:d.espacio,
+    pax:d.cantidadMesa,
+    email:d.email,
+    date:d.fechaReservacion,
+    description:d.descripcion
+
+    }))
+};
+
+const changeNamePropertyReserve = (params: ReserveDTO):ReserveApiDTO => {
+  return {
+      nombreCompleto:params.fullName,
+      dni:params.dni,
+      celular:params.cellphone,
+      espacio:params.space,
+      cantidadMesa:params.pax,
+      email:params.email,
+      fechaReservacion:params.date,
+      descripcion:params.description
+  }
+};
+
+
+
 
 
 export { 
@@ -123,5 +154,7 @@ export {
    extractPropertyFollow, 
    changeNamePropertyServices,
    changeNamePropertyDishes,
-   changeNamePropertySpaces
+   changeNamePropertySpaces,
+   changeNamePropertyReserve,
+   changeNamePropertyBookings
   };

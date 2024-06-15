@@ -37,8 +37,8 @@ let promiseExecution = async () => {
     getAllSpacesApi({}),
   ]);
   const data:SettingsDTO ={};
-  data.homeImages = promise[0].data.data[0]
-  const {imagen,imagen2,imagen3,imagen4} = promise[0].data.data[0];
+  //data.homeImages = promise[0].data.data[0]
+  const {imagen,imagen2,imagen3,imagen4,imagenFooter} = promise[0].data.data[0];
   const {nombre,descripcion} = promise[1].data.data[0];
   const booking = changeNamePropertyBooking(promise[2].data.data) ;
   const {telefonoCelular,correo,telefono} = promise[3].data.data[0];
@@ -48,6 +48,7 @@ let promiseExecution = async () => {
   data.homeImages.intermedial=imagen2;
   data.homeImages.booking=imagen3;
   data.homeImages.detail=imagen4;
+  data.homeImages.footer=imagenFooter;
   data.footer = {};
   data.footer.aboutUs = {
     name:nombre,

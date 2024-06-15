@@ -31,6 +31,7 @@ export interface HomeImagesData {
   intermedial?:string;
   booking?:string;
   detail?:string;
+  footer?:string;
 }
 export interface SettingsDTO {
   homeImages?: HomeImagesData;
