@@ -27,9 +27,9 @@ function Reservation(props: ReserveFormProps) {
 	const [section, setSection] = useState<number>(2);
 	const [selectSpace, setSelectSpace] = useState();
 	const [people, setPeople] = useState<number>(1);
-	const [name, setName] = useState<string>("");
-	const [description, setDescription] = useState<string>("");
-	const [ci, setCI] = useState<string>("");
+	const [name, setName] = useState<string>();
+	const [description, setDescription] = useState<string>();
+	const [ci, setCI] = useState<string>();
 	const [phone, setPhone] = useState<number>();
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
