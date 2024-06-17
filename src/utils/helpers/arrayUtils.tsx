@@ -127,8 +127,10 @@ const changeNamePropertyBookings = (data: ReserveApiDTO[]):ReserveDTO[] => {
     pax:d.cantidadMesa,
     email:d.email,
     date:d.fechaReservacion,
-    description:d.descripcion
-
+    description:d.descripcion,
+    schedule:d.horaInicio,
+    status:d.estado,
+    spaceName:d.nombreCorteEspacio
     }))
 };
 

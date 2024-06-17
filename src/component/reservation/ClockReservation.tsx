@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface ClockProps {
 	hour: number;
 	setHour: any;

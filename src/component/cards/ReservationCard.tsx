@@ -2,20 +2,25 @@ interface CardMenuProps {
 	image: string;
 	title: string;
 	description: string;
-	id: number;
-	date: Date;
+	id: string;
+	date: string;
+	time:string;
 	persons: number;
 	price: number;
+	status:string;
 }
 
-function ReservationCard({ image, title, description, id, date, persons, price }: CardMenuProps) {
-	const formattedDate = date.toLocaleDateString("es-ES", {
+function ReservationCard({ image, title, description, date,time, persons, price,status }: CardMenuProps) {
+	console.log("Image :",image);
+	
+	const dataTime = new Date(`${date} ${time}`);
+	const formattedDate = dataTime.toLocaleDateString("es-ES", {
 		day: "numeric",
 		month: "long",
 		year: "numeric",
 	});
 
-	const formattedTime = date.toLocaleTimeString("es-ES", {
+	const formattedTime = dataTime.toLocaleTimeString("es-ES", {
 		hour: "numeric",
 		minute: "2-digit",
 		hour12: true,
@@ -42,10 +47,10 @@ function ReservationCard({ image, title, description, id, date, persons, price }
 						<p className="text-[13px] font-Roboto_Bold text-[#1F0B01]">{persons}</p>
 					</span>
 				</div>
-				<div className="flex flex-col">
-					<p className="font-Roboto text-[#525252] text-[13px]">DESCRIPCIÓn</p>
+				{description && <div className="flex flex-col">
+					<p className="font-Roboto text-[#525252] text-[13px]">DESCRIPCIÓN</p>
 					<p className=" font-Roboto text-[#525252] text-[13px]text-justify" dangerouslySetInnerHTML={{ __html: description }} />
-				</div>
+				</div>}
 				<div className="flex gap-1 hover:cursor-pointer items-center">
 					<p className="font-Roboto_Bold text-[14px]">Cancelar Reserva</p>
 					<img src="/images/reserve/close.png" className="z-10 w-[10px] h-[10px]  " />
@@ -54,6 +59,7 @@ function ReservationCard({ image, title, description, id, date, persons, price }
 			<div className=" w-[10%] flex flex-col">
 				<p className="font-Roboto_Bold text-[12px]">Anticipo</p>
 				<p className="font-Roboto text-[14px] text-[#888888]">{price} USD</p>
+				<p className="font-Roboto text-[14px] text-[#888888]">{status}</p>
 			</div>
 		</div>
 	);

@@ -90,6 +90,21 @@ export const loginUser =
     }
   };
 
+  export const checkPasswordUser =
+  (credentials: LoginDTO) => async () => { 
+      const response = await LoginApi(credentials);
+      if (response?.data?.autenticado) {
+        return response.data;
+      } else {
+        notification.error({
+          message: `Error al autenticarse`,
+          description: 'El usuario o contraseña son incorrectos',
+          placement: "bottom",
+        });
+      }
+
+  };
+
 export const registerUser =
   (credentials: LoginDTO) => async (dispatch: any, getState: any) => {
     if (selectAuth(getState()) == null) {

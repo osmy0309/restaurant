@@ -1,6 +1,6 @@
 import { SocialNetworkData } from "../../shared/dtos/settingsDTO";
 
-export const SOCIAL_NETWORK: SocialNetworkData[] = [
+export const SOCIAL_NETWORK: SocialNetworkData[] = [ 
   {
     name: 'Facebook',
     icon: "",

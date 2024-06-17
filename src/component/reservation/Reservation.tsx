@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 
-import { useSelector } from "react-redux";
-import { RootState } from "../../app/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../app/store";
 
 import Modal from "../modal/Modal";
 import OptionService from "./OpcionServices";
-import CalendarForm from "../form/Calendar";
 import Select from "../form/Select";
 import TextField from "../form/TextFielReservation";
 import TextTarea from "../form/TextTarea";
@@ -13,6 +12,11 @@ import TableReservation from "./TableNumberReservation";
 import ClockReservation from "./ClockReservation";
 import { ReserveDTO } from "../../shared/dtos/bookingDTO";
 import dayjs from "dayjs";
+import CustomCalendar from "../form/CalendarCustom";
+import { reserveApi } from "../../services/bookingApi";
+import { notification } from "antd";
+import { useNavigate } from "react-router-dom";
+import { setOpenReserve } from "../../features/auth/authSlice";
 interface ReserveFormProps {
 	setModalOpen: any;
 	modalopen: boolean;
@@ -24,15 +28,15 @@ interface OptionProps {
 }
 function Reservation(props: ReserveFormProps) {
 
-	
-const currentDate = dayjs();
-const formattedDate = currentDate.format('YYYY-MM-DD');
+
+	const currentDate = dayjs();
+	const formattedDate = currentDate.format('YYYY-MM-DD');
 
 
 	let services = useSelector((state: RootState) => state.services.data);
 	let spaces = useSelector((state: RootState) => state.spaces.data);
 	let auth = useSelector((state: RootState) => state.auth.data);
-	
+
 	const [option, setOption] = useState<OptionProps[]>([]);
 	const [section, setSection] = useState<number>(2);
 	const [selectSpace, setSelectSpace] = useState<string>();
@@ -40,26 +44,23 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 	const [name, setName] = useState<string>();
 	const [description, setDescription] = useState<string>();
 	const [ci, setCI] = useState<string>();
+	const [email, setEmail] = useState<string>(auth?.email || "");
 	const [phone, setPhone] = useState<string>();
 	const [hour, setHour] = useState<number>(1);
 	const [minutes, setMinutes] = useState<number>(0);
 	const [am_pm, setAm_Pm] = useState<number>(0);
 	const [date, setDate] = useState<string>(formattedDate);
-	const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+	const [_, setServicesSelected] = useState<number | undefined>(undefined);
+	const [month,setMonth] = useState<number>(0);
+	const [isValid, setIsValid] = useState<boolean>(false);
+	const [loading,setLoading] = useState<boolean>(false);
 
-	const [serviceselect, setServicesSelected] = useState<number | undefined>(undefined);
-
-	const [isValid,setIsValid] = useState<boolean>(false);
-
-	useEffect(()=>{
-		console.log("Validar :",name,description,phone,ci);
-		
-		if(name && phone && phone?.length >= 8 && ci) 
-		{
-			setIsValid(true) 
-		}	
+	useEffect(() => {
+		if (name && phone && phone?.length >= 8 && ci && email) {
+			setIsValid(true)
+		}
 		else setIsValid(false);
-	},[name,phone,ci])
+	}, [name, phone, ci])
 
 	const formattedMinutes = (minutes: number) => {
 		return minutes < 10 ? `0${minutes}` : minutes.toString();
@@ -75,9 +76,9 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 		setOption(mappedOptions);
 	}, []);
 
-	useEffect(()=>{
-		spaces?.length >0 && setSelectSpace(spaces[0]?.id.toString());
-	},[spaces])
+	useEffect(() => {
+		spaces?.length > 0 && setSelectSpace(spaces[0]?.id.toString());
+	}, [spaces])
 
 	useEffect(() => {
 		if (section == 1) {
@@ -87,52 +88,79 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 			setMinutes(0);
 		}
 	}, [section]);
-
-	const handleReserve = () => {
-		const data:ReserveDTO = {
-			email: auth?.email || "rogeidis9007@gmail.com",
-			date:`${date} ${am_pm == 0 ? `${hour}:${formattedMinutes(minutes)}` : `${hour+12}:${formattedMinutes(minutes)}`}`,
-			pax: people,
-			description: description || "",
-			space:selectSpace?.toString() || "",
-			fullName: name || "",
-			dni: ci || "",
-			cellphone: phone?.toString() || "",
+	const navigate = useNavigate();
+	const dispatch = useDispatch<AppDispatch>();
+	const handleReserve =async () => {
+		try {
+			const data: ReserveDTO = {
+				email: email,
+				date: `${date} ${am_pm == 0 ? `${hour}:${formattedMinutes(minutes)}` : `${hour + 12}:${formattedMinutes(minutes)}`}`,
+				pax: people,
+				description: description || "",
+				space: selectSpace?.toString() || "",
+				fullName: name || "",
+				dni: ci || "",
+				cellphone: phone?.toString() || "",
+			}
+			console.log("Reservar :", data);
+			setLoading(true);
+			const response = await reserveApi(data);
+			console.log("Response :",response);
+			setLoading(false)
+			notification.success({
+				message: `Reserva creada`,
+				description: 'La reserva se ha completado con exito',
+				placement: "bottom",
+			  });
+			  dispatch(setOpenReserve(false));
+			auth?.email && navigate("/bookings");
+			
+		} catch (error) {
+			setLoading(false)
+			notification.error({
+				message: `Error al reservar`,
+				description: 'No se ha podido realizar la reserva',
+				placement: "bottom",
+			  });
 		}
-		console.log("Reservar :",data);
 		
+
 	}
 
 	return (
 		<>
-			{}
+			{ }
 			<Modal style={props.style} onCloseModal={() => props.setModalOpen(false)}>
 				<div
-					className={`flex flex-col items-center justify-center bg-white  pb-[3rem] z-10 ${
-						section == 1 ? "" : "animate-fade-right opacity-0 hidden"
-					}`}
+					className={`flex flex-col items-center justify-center bg-white  pb-[3rem] z-10 ${section == 1 ? "" : "animate-fade-right opacity-0 hidden"
+						}`}
 				>
 					<img src="/images/reserve/IvánChefsJusto.png" className="z-10 w-[12rem] h-[2rem] hover:cursor-pointer" />
 					<p className="font-Sail_Regular text-[48px] pb-[3rem] text-center">¿Que deseas reservar?</p>
-					<OptionService name={"Una mesa"} setValue={setServicesSelected} setSection={setSection} id={0}/>
+					<OptionService name={"Una mesa"} setValue={setServicesSelected} setSection={setSection} id={0} />
 					{services.map((data) => (
 						<OptionService name={data.chortName} setValue={setServicesSelected} setSection={setSection} id={data.id} />
 					))}
 				</div>
 
 				<div
-					className={`flex flex-col gap-[20px] w-full items-center justify-center bg-white  pb-[3rem]  ${
-						section == 2 ? "animate-fade-left opacity-100" : "animate-fade-right opacity-0 hidden"
-					}`}
+					className={`flex flex-col gap-[20px] w-full items-center justify-center bg-white  pb-[3rem]  ${section == 2 ? "animate-fade-left opacity-100" : "animate-fade-right opacity-0 hidden"
+						}`}
 				>
 					<img src="/images/reserve/IvánChefsJusto.png" className="w-[12rem] h-[2rem] hover:cursor-pointer" />
 					{<p className="font-Sail_Regular text-[48px]  text-center">Detalles de la reserva</p>}
 					<TableReservation people={people} setPeople={setPeople} />
-
 					<div className="flex flex-col !justify-start !items-start w-full ">
 						<p className="font-Roboto pb-2 text-[#1F0B01]">Selecciona la fecha de reserva</p>
+
 						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-auto px-[5rem]">
-							<CalendarForm setValue={setDate}/>
+							<div className="hover:cursor-pointer m-[5px]" onClick={() =>  setMonth(month-1)}>
+								<img src="/images/reserve/row.png" className="w-[20px] !h-[20px] hover:cursor-pointer" />
+							</div>
+							<CustomCalendar setValue={setDate} value={date} month={month} setMonth={setMonth}/>
+							<div className="text-center font-bold text-[25px] hover:cursor-pointer m-[5px]" onClick={() => setMonth(month+1)}>
+								<img src="/images/reserve/row.png" className="rotate-180 w-[20px] !h-[20px] hover:cursor-pointer" />
+							</div>
 						</div>
 					</div>
 					<div className="flex flex-col !justify-start !items-start w-full ">
@@ -159,9 +187,8 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 				</div>
 
 				<div
-					className={`flex flex-col gap-[20px] w-full items-center justify-center bg-white  pb-[3rem]  ${
-						section == 3 ? "animate-fade-left opacity-100" : "animate-fade-right opacity-0 hidden"
-					}`}
+					className={`flex flex-col gap-[20px] w-full items-center justify-center bg-white  pb-[3rem]  ${section == 3 ? "animate-fade-left opacity-100" : "animate-fade-right opacity-0 hidden"
+						}`}
 				>
 					<img src="/images/reserve/IvánChefsJusto.png" className="w-[12rem] h-[2rem] hover:cursor-pointer" />
 					{/*<p className="font-Sail_Regular text-[48px]  text-center">Detalles de la reserva</p>*/}
@@ -230,6 +257,22 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 							/>
 						</div>
 					</div>
+					<div className="flex flex-col !justify-start !items-start w-full ">
+						<div className="flex gap-1">
+							{" "}
+							<p className="font-Roboto pb-2 text-[#1F0B01]">Correo</p>
+							<span className="text-[#ff0000]">*</span>
+						</div>
+						<div className="flex !justify-center !items-center shadow-3xl p-4 rounded-[12px] w-full h-[60px] ">
+							<TextField
+								styleClass="!border-[0px] bg-white text-[#1F0B01]  !text-[18px] font-Roboto"
+								required
+								value={email}
+								type="text"
+								onChange={setEmail}
+							/>
+						</div>
+					</div>
 
 					<div className="flex flex-col !justify-start !items-start w-full ">
 						<div className="flex gap-1 ">
@@ -268,7 +311,7 @@ const formattedDate = currentDate.format('YYYY-MM-DD');
 						>
 							Atras
 						</button>
-						<button onClick={handleReserve} disabled={!isValid} className={`h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center ${isValid ? 'bg-[#E38A5D] hover:bg-[#e4743c]' : 'bg-[#808080]'}`}>
+						<button onClick={handleReserve} disabled={!isValid || loading} className={`h-[55px] w-[80%] hover:cursor-pointer text-[16px] border border-black text-white font-Roboto_Bold rounded-[8px] px-5 py-3 flex items-center justify-center text-center ${isValid && !loading ? 'bg-[#E38A5D] hover:bg-[#e4743c]' : 'bg-[#808080]'}`}>
 							{/*<img src="/images/menu/solar_user-broken.png" className="w-[45px] h-[35px] hover:cursor-pointer" />*/}
 							Reservar
 						</button>

@@ -8,6 +8,9 @@ export interface ReserveApiDTO {
   nombreCompleto: string;
   dni: string;
   celular: string;
+  horaInicio?:	string;
+  estado?:string;
+  nombreCorteEspacio?:string;
 }
 export interface ReserveDTO {
   id?:string;
@@ -19,5 +22,8 @@ export interface ReserveDTO {
   fullName: string;
   dni: string;
   cellphone: string;
+  schedule?:string;
+  status?:string;
+  spaceName?:string;
 }
 

@@ -216,6 +216,19 @@ function Menu() {
 								</div>
 							</Link>
 						)}
+						{auth?.email && (
+							<Link to="/perfil">
+								<div
+									className={`hover:cursor-pointer hover:text-[#E38A5D] ${location.pathname === "/perfil" ? "text-[#E38A5D]" : "text-[#FFFFFF]"}`}
+									onMouseEnter={() => {
+										setEspaciosSelected(false);
+										setServicesSelected(false);
+									}}
+								>
+									Perfil
+								</div>
+							</Link>
+						)}
 					</div>
 					<div className=" w-[40%] text-[#FFFFFF] flex gap-3 items-center mr-5 right-0">
 						<img src="/images/menu/iconamoon_search-bold.png" className="w-[1.5rem] h-[1.5rem]  hidden md:inline-block" />

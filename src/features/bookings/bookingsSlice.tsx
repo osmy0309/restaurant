@@ -35,7 +35,7 @@ export const {
 } = bookingsSlice.actions;
 export const selectBookings = (state: any) => state.bookings.data;
 
-export const loadDishesData =
+export const loadBookingsData =
   (email: string) => async (dispatch: any, getState: any) => {
     if (selectBookings(getState()).length === 0 && !getState().bookings.loading) {      
       dispatch(
